@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Créer un article</h1>
+    <form method="post" action="{{ path('article_create') }}">
+        <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" id="titre" name="titre" class="form-control" placeholder="Titre de l'article" required>
+        </div>
+        <div class="mb-3">
+            <label for="categorie" class="form-label">Catégorie</label>
+            <input type="text" id="categorie" name="categorie" class="form-control" placeholder="Catégorie de l'article" required>
+        </div>
+        <div class="mb-3">
+            <label for="contenu" class="form-label">Contenu</label>
+            <textarea id="contenu" name="contenu" class="form-control" rows="4" placeholder="Contenu de l'article" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Créer l'article</button>
+        <a href="{{ path('article_index') }}" class="btn btn-secondary">Retour à la liste</a>
+    </form>
+</div>
+{% endblock %}

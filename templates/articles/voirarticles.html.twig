@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ article.titre }}</h1>
+
+    <p><strong>Catégorie :</strong> {{ article.categorie }}</p>
+    <p><strong>Contenu :</strong></p>
+    <p>{{ article.contenu }}</p>
+
+    <hr>
+
+    <h3>Commentaires</h3>
+    {% if comments is not empty %}
+        <ul class="list-group mb-4">
+            {% for comment in comments %}
+                <li class="list-group-item">
+                    <p>
+                        <strong>{{ comment.author.name }}</strong> - 
+                        <small class="text-muted">{{ comment.createdAt|date('d/m/Y H:i') }}</small>
+                    </p>
+                    <p>{{ comment.content }}</p>
+
+                    {# Boutons Modifier/Supprimer visibles si l'utilisateur est l'auteur ou un admin #}
+                    {% if app.user and (app.user == comment.author or is_granted('ROLE_ADMIN')) %}
+                        <a href="{{ path('commentaire_edit', { id: comment.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('commentaire_delete', { id: comment.id }) }}" style="display: inline;" 
+                              onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">Aucun commentaire pour cet article.</p>
+    {% endif %}
+
+    <hr>
+
+    {# Formulaire d'ajout de commentaire #}
+    {% if app.user %}
+        <h4>Ajouter un commentaire</h4>
+
+        <form method="post" action="{{ path('article_show', { id: article.id }) }}">
+            <div class="mb-3">
+                <label for="content" class="form-label">Votre commentaire</label>
+                <textarea id="content" name="content" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Publier</button>
+        </form>
+    {% else %}
+        <p class="text-danger">Vous devez être connecté pour ajouter un commentaire.</p>
+        <a href="{{ path('app_login') }}" class="btn btn-success">Se connecter</a>
+    {% endif %}
+
+    <a href="{{ path('article_index') }}" class="btn btn-secondary mt-4">Retour à la liste des articles</a>
+</div>
+{% endblock %}

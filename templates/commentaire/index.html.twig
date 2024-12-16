@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des commentaires</h1>
+
+    <!-- Lien pour ajouter un commentaire -->
+    <a href="{{ path('commentaire_create') }}" class="btn btn-success mb-3">Ajouter un commentaire</a>
+
+    <!-- Tableau des commentaires -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Auteur</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commentaire in commentaires %}
+                <tr>
+                    <td>{{ commentaire.id }}</td>
+                    <td>{{ commentaire.auteur }}</td>
+                    <td>{{ commentaire.contenu }}</td>
+                    <td>{{ commentaire.date|date('d/m/Y H:i') }}</td>
+                    <td>
+                        <a href="{{ path('commentaire_edit', { id: commentaire.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                        
+                        <form method="post" action="{{ path('commentaire_delete', { id: commentaire.id }) }}" style="display: inline;" 
+                              onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun commentaire trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

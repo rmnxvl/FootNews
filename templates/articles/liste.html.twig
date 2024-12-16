@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des articles</h1>
+
+    <!-- Formulaire de filtrage par catégorie -->
+    <form method="get" action="{{ path('article_index') }}" class="mb-4">
+        <label for="categorie">Filtrer par catégorie :</label>
+        <select id="categorie" name="categorie" class="form-select w-25" onchange="this.form.submit();">
+            <option value="" {% if not categorie %}selected{% endif %}>Toutes</option>
+            <option value="Football" {% if categorie == 'Football' %}selected{% endif %}>Football</option>
+            <option value="NBA" {% if categorie == 'NBA' %}selected{% endif %}>NBA</option>
+            <option value="Natation J.O" {% if categorie == 'Natation J.O' %}selected{% endif %}>Natation J.O</option>
+        </select>
+    </form>
+
+    <!-- Lien pour créer un article (visible uniquement pour les admins) -->
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('article_create') }}" class="btn btn-success mb-3">Créer un article</a>
+    {% endif %}
+
+    <!-- Tableau des articles -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.titre }}</td>
+                    <td>{{ article.categorie }}</td>
+                    <td>{{ article.contenu }}</td>
+                    <td>
+                        <!-- Boutons visibles uniquement pour les admins -->
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('article_edit', { id: article.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                            <form method="post" action="{{ path('article_delete', { id: article.id }) }}" style="display: inline;" 
+                                onsubmit="return confirm('Voulez-vous vraiment supprimer l\'article {{ article.titre }} ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                <button class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        {% endif %}
+
+                        <!-- Bouton Voir toujours visible -->
+                        <a href="{{ path('article_show', { id: article.id }) }}" class="btn btn-info btn-sm">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun article trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

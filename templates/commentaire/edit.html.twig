@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Modifier votre commentaire</h1>
+    <form method="post" action="{{ path('commentaire_edit', { id: commentaire.id }) }}">
+        <div class="mb-3">
+            <label for="content" class="form-label">Votre commentaire</label>
+            <textarea id="content" name="content" class="form-control" rows="4" required>{{ commentaire.content }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+    <a href="{{ path('article_show', { id: commentaire.article.id }) }}" class="btn btn-secondary mt-3">Retour à l'article</a>
+</div>
+{% endblock %}
