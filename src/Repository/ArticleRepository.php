@@ -16,28 +16,29 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    //    /**
-    //     * @return Article[] Returns an array of Article objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Recherche des articles par mot-clé dans le titre.
+     *
+     * @param string|null $keyword
+     * @param string|null $categorie
+     * @return Article[]
+     */
+    public function searchArticles(?string $keyword, ?string $categorie): array
+    {
+        $qb = $this->createQueryBuilder('a');
 
-    //    public function findOneBySomeField($value): ?Article
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if (!empty($keyword)) {
+            $qb->andWhere('a.titre LIKE :keyword OR a.contenu LIKE :keyword OR a.categorie LIKE :keyword')
+               ->setParameter('keyword', '%' . $keyword . '%');
+        }
+
+        if (!empty($categorie)) {
+            $qb->andWhere('a.categorie = :categorie')
+               ->setParameter('categorie', $categorie);
+        }
+
+        return $qb->orderBy('a.id', 'ASC')
+                  ->getQuery()
+                  ->getResult();
+    }
 }

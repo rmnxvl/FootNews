@@ -4,24 +4,50 @@
 <div class="container mt-5">
     <h1>Modifier l'utilisateur</h1>
     <form method="post" class="mt-4">
+        <!-- Champ Nom -->
         <div class="form-group">
             <label for="name">Nom</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ user.name }}" required>
         </div>
+        
+        <!-- Champ Pseudo -->
+        <div class="form-group mt-3">
+            <label for="username">Pseudo</label>
+            <input type="text" id="username" name="username" class="form-control" value="{{ user.username }}" required>
+        </div>
+
+        <!-- Champ Email -->
         <div class="form-group mt-3">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" class="form-control" value="{{ user.email }}" required>
         </div>
+
+        <!-- Champ Ancien Mot de Passe -->
         <div class="form-group mt-3">
-            <label for="roles">Rôles</label>
-            <select name="role" id="role">
-                <option value="ROLE_USER" {% if 'ROLE_USER' in user.roles %}selected{% endif %}>Utilisateur</option>
-                <option value="ROLE_ADMIN" {% if 'ROLE_ADMIN' in user.roles %}selected{% endif %}>Administrateur</option>
-            </select>
+            <label for="old_password">Ancien mot de passe</label>
+            <input type="password" id="old_password" name="old_password" class="form-control" placeholder="Entrez votre ancien mot de passe">
         </div>
+
+        <!-- Champ Nouveau Mot de Passe -->
+        <div class="form-group mt-3">
+            <label for="new_password">Nouveau mot de passe</label>
+            <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Entrez votre nouveau mot de passe">
+        </div>
+
+        <!-- Afficher les rôles uniquement pour les administrateurs -->
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group mt-3">
+                <label for="roles">Rôles</label>
+                <select name="role" id="role" class="form-select">
+                    <option value="ROLE_USER" {% if 'ROLE_USER' in user.roles %}selected{% endif %}>Utilisateur</option>
+                    <option value="ROLE_ADMIN" {% if 'ROLE_ADMIN' in user.roles %}selected{% endif %}>Administrateur</option>
+                </select>
+            </div>
+        {% endif %}
+
+        <!-- Boutons d'action -->
         <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
         <a href="{{ path('user_index') }}" class="btn btn-secondary mt-3">Retour</a>
     </form>
 </div>
 {% endblock %}
-
