@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Créer une compétition</h1>
+    <form method="post" action="{{ path('competition_create') }}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre de la compétition</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Nom de la compétition" required>
+        </div>
+        <div class="mb-3">
+            <label for="countryName" class="form-label"> Localisation </label>
+            <input type="text" id="countryName" name="countryName" class="form-control" placeholder=" Lieu de la compétition" required>
+        </div>
+        <button type="submit" class="btn btn-success">Créer la compétition</button>
+        <a href="{{ path('competition_index') }}" class="btn btn-secondary">Retour à la liste</a>
+    </form>
+</div>
+{% endblock %}

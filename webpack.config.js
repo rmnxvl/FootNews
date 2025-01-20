@@ -1,7 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
 
-// Manually configure the runtime environment if not already configured yet by the "encore" command.
-// It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
@@ -9,13 +7,24 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
+
+    // ⚡️ Point d'entrée de l'application
     .addEntry('app', './assets/app.js')
+
+    // 🧹 Nettoyer le dossier build avant chaque build
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
     .enablePostCssLoader()
-    // enables and configure @babel/preset-env polyfills
+
+    // 📦 Gérer les images (logo, icônes, etc.)
+    .copyFiles({
+        from: './assets/Images',           // Dossier source
+        to: 'images/[path][name].[ext]',   // Dossier cible dans public/build/images
+    })
+
+    // 🔧 Configurer Babel
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.38';

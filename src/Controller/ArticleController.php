@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Commentaire;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,22 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    // Afficher les articles avec filtrage par catégorie et recherche par mot-clé
-    #[Route('/articles', name: 'article_index', methods: ['GET'])]
-    public function index(Request $request, ArticleRepository $articleRepository): Response
-    {
-        $categorie = $request->query->get('categorie', '');
-        $search = $request->query->get('search', '');
+    // 📄 Afficher la liste des articles (publique)
+    #[Route('/admin/articles', name: 'article_index', methods: ['GET'])]
+public function index(Request $request, ArticleRepository $articleRepository): Response
+{
+    $search = $request->query->get('search');  // Récupère la recherche dans l'URL
+    $articles = $articleRepository->searchArticles($search);  // Utilise la recherche
 
-        $articles = $articleRepository->searchArticles($search, $categorie);
+    return $this->render('admin/articles/liste.html.twig', [
+        'articles' => $articles,
+    ]);
+}
 
-        return $this->render('articles/liste.html.twig', [
-            'articles' => $articles,
-            'categorie' => $categorie,
-        ]);
-    }
-
-    // Voir un article avec ses commentaires et ajouter un commentaire
+    // 📄 Afficher un article et ses commentaires (publique)
     #[Route('/articles/{id<\d+>}', name: 'article_show', methods: ['GET', 'POST'])]
     public function show(
         Article $article,
@@ -62,68 +60,83 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    // Créer un article (réservé aux administrateurs)
-    #[Route('/articles/create', name: 'article_create', methods: ['GET', 'POST'])]
+    // ✅ Créer un nouvel article (ADMIN uniquement)
+    #[Route('/admin/articles/create', name: 'admin_article_create', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        if ($request->isMethod('POST')) {
-            $titre = $request->request->get('titre');
-            $categorie = $request->request->get('categorie');
-            $contenu = $request->request->get('contenu');
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
 
-            if (!empty($titre) && !empty($categorie) && !empty($contenu)) {
-                $article = new Article();
-                $article->setTitre($titre);
-                $article->setCategorie($categorie);
-                $article->setContenu($contenu);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($article);
+            $em->flush();
 
-                $em->persist($article);
-                $em->flush();
+            $this->addFlash('success', 'Article créé avec succès !');
 
-                return $this->redirectToRoute('article_index');
-            }
+            return $this->redirectToRoute('article_index');
         }
 
-        return $this->render('articles/create.html.twig');
+        return $this->render('admin/articles/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
-    // Modifier un article existant (réservé aux administrateurs)
-    #[Route('/articles/{id<\d+>}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
+    // ✏️ Modifier un article existant (ADMIN uniquement)
+    #[Route('/admin/articles/{id<\d+>}/edit', name: 'admin_article_edit', methods: ['GET', 'POST'])]
     public function edit(Article $article, Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
+    
         if ($request->isMethod('POST')) {
             $titre = $request->request->get('titre');
-            $categorie = $request->request->get('categorie');
             $contenu = $request->request->get('contenu');
-
-            if (!empty($titre) && !empty($categorie) && !empty($contenu)) {
+            $imageFile = $request->files->get('imageFile');
+    
+            if ($titre && $contenu) {
                 $article->setTitre($titre);
-                $article->setCategorie($categorie);
                 $article->setContenu($contenu);
-
+    
+                // ⚡️ Gestion de l'upload de l'image
+                if ($imageFile) {
+                    $uploadsDir = $this->getParameter('kernel.project_dir') . '/public/uploads/articles';
+                    $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+    
+                    try {
+                        $imageFile->move($uploadsDir, $newFilename);
+                        $article->setImage($newFilename);
+                    } catch (\Exception $e) {
+                        $this->addFlash('error', 'Erreur lors de l\'upload de l\'image.');
+                        return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
+                    }
+                }
+    
                 $em->flush();
-
+                $this->addFlash('success', 'Article mis à jour avec succès !');
+    
                 return $this->redirectToRoute('article_index');
+            } else {
+                $this->addFlash('error', 'Veuillez remplir tous les champs.');
             }
         }
-
-        return $this->render('articles/edit.html.twig', [
+    
+        return $this->render('admin/articles/edit.html.twig', [
             'article' => $article,
         ]);
     }
 
-    // Supprimer un article (réservé aux administrateurs)
-    #[Route('/articles/{id<\d+>}/delete', name: 'article_delete', methods: ['POST'])]
+    // 🗑️ Supprimer un article (ADMIN uniquement)
+    #[Route('/admin/articles/{id<\d+>}/delete', name: 'admin_article_delete', methods: ['POST'])]
     public function delete(Article $article, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $em->remove($article);
         $em->flush();
+
+        $this->addFlash('success', 'Article supprimé !');
 
         return $this->redirectToRoute('article_index');
     }

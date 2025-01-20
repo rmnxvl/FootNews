@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | FootNews{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/accueil.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="containermt-5">
+    <img src="{{ asset('Images/imgaccueil.svg') }}" class="img-home" alt="Image d'accueil">
+
+    <main>
+        <!-- Section des actualités -->
+        <section class="news-section">
+            <h2> Dernières actualités</h2>
+
+            <!-- Conteneur d'articles en grille -->
+            <div class="news-grid">
+                {% if articles is not empty %}
+                    {% for article in articles %}
+                        <a href="{{ path('article_show', { 'id': article.id }) }}" class="news-item">
+                            <!-- Image de l'article (par défaut si aucune image) -->
+                            <img src="{{ article.image ? asset('uploads/articles/' ~ article.image) : asset('Images/article_default.webp') }}" alt="{{ article.titre }}">
+
+                            <!-- Titre de l'article -->
+                            <h3>{{ article.titre }}</h3>
+
+                            <!-- Date de publication -->
+                            <p class="article-date">🗓️ Publié le {{ article.createdAt|date('d/m/Y H:i') }}</p>
+
+                            <!-- Aperçu du contenu -->
+                            <p>{{ article.contenu|slice(0, 100) ~ '...' }}</p>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucun article disponible pour le moment.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Section des vidéos -->
+    <section class="video-section">
+        <header class="video-header">
+            <h2>Résumés vidéos des derniers matchs</h2>
+            <p>Revivez les meilleurs moments !</p>
+        </header>
+        <div class="video-container">
+            <div class="video-item">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/k31Xc8Am8XU?si=_Md_3NPyZ8NGRWjj" allowfullscreen></iframe>
+                <p><strong>DORTMUND - FC BARCELONE</strong></p>
+            </div>
+            <div class="video-item">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/zXM7G4tQ6y4" allowfullscreen></iframe>
+                <p><strong>REAL MADRID - AC MILAN</strong></p>
+            </div>
+            <div class="video-item">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/0fLHDl1pMTs?si=uiZEGDRsN3vHvvr2" allowfullscreen></iframe>
+                <p><strong>JUVENTUS - MANCHESTER CITY</strong></p>
+            </div>
+            <div class="video-item">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/1pN_Umio3Zg?si=vi1hrr_MLpybRI1w" allowfullscreen></iframe>
+                <p><strong>LILLE - STURM GRAZ</strong></p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

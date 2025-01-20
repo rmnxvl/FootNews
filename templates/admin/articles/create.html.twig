@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin | Créer Article{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/accueil.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Créer un nouvel article</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.contenu) }}
+        {{ form_row(form.imageFile) }}
+
+        <button type="submit" class="btn btn-success">Publier</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('article_index') }}" class="btn btn-secondary mt-3">Retour aux articles</a>
+</div>
+{% endblock %}

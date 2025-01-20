@@ -1,0 +1,34 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/edit-articles.css') }}">
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h1>Modifier l'article</h1>
+
+    {# ⚠️ Important : enctype="multipart/form-data" permet l'upload de fichiers #}
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" name="titre" class="form-control" value="{{ article.titre }}" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="imageFile">Changer l'image</label>
+            <input type="file" id="imageFile" name="imageFile" class="form-control">
+            
+            {% if article.image %}
+                <p>Image actuelle :</p>
+                <img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="Image de l'article" style="max-width: 200px;">
+            {% endif %}
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="contenu">Contenu</label>
+            <textarea id="contenu" name="contenu" class="form-control" rows="4" required>{{ article.contenu }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+        <a href="{{ path('article_index') }}" class="btn btn-secondary mt-3">Retour</a>
+    </form>
+</div>
+{% endblock %}

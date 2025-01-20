@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/crud-articles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">CRUD Articles</h1>
+
+    <!-- ✅ Formulaire de recherche -->
+    <form method="get" action="{{ path('article_index') }}" class="d-flex mb-4">
+        <input type="text" name="search" class="form-control me-2" placeholder="Rechercher un article..." value="{{ app.request.query.get('search') }}">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
+    <!-- ✅ Tableau des articles -->
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.titre }}</td>
+                    <td class="text-wrap" style="max-width: 300px;">{{ article.contenu }}</td>
+                    <td>
+                        <div class="d-flex flex-column gap-2">
+                            <a href="{{ path('article_show', { id: article.id }) }}" class="btn btn-info btn-sm">Voir</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('admin_article_edit', { id: article.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                                <form method="post" action="{{ path('admin_article_delete', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer l\'article {{ article.titre }} ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
+
+                                <!-- ✅ Bouton "Créer un article" dans chaque ligne -->
+                                <a href="{{ path('admin_article_create') }}" class="btn btn-success btn-sm">Créer un article</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Aucun article trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

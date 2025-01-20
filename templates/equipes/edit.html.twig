@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Modifier l'équipe</h1>
+    <form method="post" class="mt-4">
+        <div class="form-group">
+            <label for="titreEquipe">Titre de l'équipe</label>
+            <input type="text" id="titreEquipe" name="titreEquipe" class="form-control" value="{{ equipe.titreEquipe }}" required>
+        </div>
+        <div class="form-group mt-3">
+            <label for="localisation">Localisation</label>
+            <input type="text" id="localisation" name="localisation" class="form-control" value="{{ equipe.localisation }}">
+        </div>
+        <div class="form-group mt-3">
+            <label for="logoEquipe">Logo de l'équipe</label>
+            <input type="text" id="logoEquipe" name="logoEquipe" class="form-control" value="{{ equipe.logoEquipe }}">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+        <a href="{{ path('equipe_index') }}" class="btn btn-secondary mt-3">Retour</a>
+    </form>
+</div>
+{% endblock %}

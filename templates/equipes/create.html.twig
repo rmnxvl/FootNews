@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Créer une nouvelle équipe</h1>
+
+    <form method="post" action="{{ path('equipe_create') }}">
+        <div class="mb-3">
+            <label for="titreEquipe" class="form-label">Titre de l'équipe</label>
+            <input type="text" id="titreEquipe" name="titreEquipe" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="localisation" class="form-label">Localisation</label>
+            <input type="text" id="localisation" name="localisation" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Créer</button>
+    </form>
+</div>
+{% endblock %}

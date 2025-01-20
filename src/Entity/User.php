@@ -23,13 +23,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $name = null;
-
-    #[ORM\Column(length: 50, nullable: true)] // Nouvelle colonne username
+    #[ORM\Column(length: 50, unique: true)]
     private ?string $username = null;
 
-    // --- Getters et setters ---
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profilePicture = null; 
+
+    // ✅ Getters & Setters
 
     public function getId(): ?int
     {
@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';  // Attribution automatique du rôle USER
         return array_unique($roles);
     }
 
@@ -71,24 +71,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    // Getter pour le pseudo (username)
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    // Setter pour le pseudo (username)
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -97,11 +84,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Ne rien faire ici car il n'y a pas de données sensibles à effacer
+        // Pas de données sensibles à effacer
     }
 
     public function getUserIdentifier(): string
     {
-        return $this->email;
+        return $this->email;  // Utilisation de l'email comme identifiant
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
+        return $this;
     }
 }

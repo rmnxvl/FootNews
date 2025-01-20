@@ -1,0 +1,276 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #ffffff;
+    margin: 0;
+}
+
+header {
+    background-color: #0d0d0e;
+    padding: 10px 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.logo {
+    display: flex; /* Permet de centrer le logo avec flexbox */
+    align-items: center; /* Centre le logo verticalement */
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 20px; /* Espace entre le logo et les liens */
+}
+
+
+nav {
+    display: flex; /* Utilise flex pour les liens de navigation */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px; /* Espacement des liens */
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #0f0f10;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.user-profile {
+    margin-left: auto; /* Pousse l'image de profil vers la droite */
+}
+
+.navbar {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.conditions {
+    text-align: center;
+    padding: 0 300px 0 300px; 
+}
+
+
+nav {
+    display: flex; /* Utilise le modèle Flexbox */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.nav-button {
+    display: inline-block; /* Permet de garder le style de bouton */
+    padding: 15px 20px; /* Ajuste l'espacement interne */
+    text-decoration: none; /* Enlève le soulignement */
+    color: white; /* Couleur du texte */
+    background-color: transparent; /* Pas de couleur de fond */
+    border: none; /* Enlève les bordures par défaut */
+    margin-right: 100px;
+}
+
+.dropbtn {
+    display: inline-block; /* Permet de garder le style de bouton */
+    padding: 15px 20px; /* Ajuste l'espacement interne */
+    text-decoration: none; /* Enlève le soulignement */
+    color: white; /* Couleur du texte en blanc */
+    background-color: #000000; /* Couleur de fond du bouton */
+    border: none; /* Enlève les bordures par défaut */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur en forme de main */
+}
+
+.dropdown-content {
+    display: none; /* Masque le contenu par défaut */
+    position: absolute; /* Positionne le menu déroulant */
+    min-width: 160px; /* Largeur minimale du menu */
+    background-color: #000000; /* Couleur de fond du menu */
+    z-index: 1; /* Z-index pour superposer les éléments */
+}
+
+.dropdown-content a {
+    color: white; /* Couleur du texte dans le dropdown */
+    padding: 12px 16px; /* Espacement interne */
+    text-decoration: none; /* Pas de soulignement */
+    display: block; /* Affichage en bloc */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Affiche le contenu au survol du parent */
+}
+
+.dropdown-content a {
+    color: white; /* Couleur du texte dans le dropdown */
+    padding: 12px 16px; /* Espacement interne */
+    text-decoration: none; /* Pas de soulignement */
+    display: block; /* Affichage en bloc */
+    border-bottom: 1px solid rgb(255, 255, 255); /* Ajoute une bordure en bas de chaque élément */
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none; /* Enlève la bordure du dernier élément */
+}
+
+.dropdown-content {
+    background-color: #010101; /* Couleur de fond du menu */
+}
+.competition-logo {
+    width: 30px; /* Ajuste la largeur selon tes besoins */
+    height: 30px; /* Ajuste la hauteur selon tes besoins */
+    margin-right: 8px; /* Espace entre l'image et le texte */
+    vertical-align: middle; /* Aligne l'image verticalement au centre */
+}
+
+.user-actions {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.user-actions .nav-button {
+    margin-left: 20px; /* Espace entre le bouton et l'image de profil */
+}
+
+.nav-button, .dropbtn {
+    display: inline-block; /* Permet de garder le style de bouton */
+    padding: 10px 20px; /* Ajuste l'espacement interne */
+    text-decoration: none; /* Enlève le soulignement */
+    color: white; /* Couleur du texte */
+    background-color: transparent; /* Pas de couleur de fond */
+    border: 2px solid white; /* Bordure blanche autour des boutons */
+    border-radius: 5px; /* Arrondi des coins */
+    margin-right: 20px; /* Espace entre les boutons */
+    transition: background-color 0.3s; /* Transition pour l'effet hover */
+}
+
+.nav-button:hover, .dropbtn:hover {
+    background-color: rgba(235, 235, 235, 0.1); /* Couleur de fond au survol */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #ffffff;
+    margin: 0;
+}
+
+header {
+    background-color: #0d0d0e;
+    padding: 10px 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+.logo {
+    display: flex; /* Permet de centrer le logo avec flexbox */
+    align-items: center; /* Centre le logo verticalement */
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 20px; /* Espace entre le logo et les liens */
+}
+
+nav {
+    display: flex; /* Utilise flex pour les liens de navigation */
+}
+
+.nav-button {
+    display: inline-block; /* Permet de garder le style de bouton */
+    padding: 10px 20px; /* Ajuste l'espacement interne */
+    text-decoration: none; /* Enlève le soulignement */
+    color: white; /* Couleur du texte */
+    background-color: transparent; /* Pas de couleur de fond */
+    border: 2px solid white; /* Bordure blanche autour des boutons */
+    border-radius: 5px; /* Arrondi des coins */
+    margin-right: 20px; /* Espace entre les boutons */
+    transition: background-color 0.3s; /* Transition pour l'effet hover */
+}
+
+
+.scroll-button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Couleur du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en forme de main */
+    margin: 20px; /* Espacement */
+    font-size: 16px; /* Taille de la police */
+    display: block; /* Permet au bouton d'être centré */
+}
+
+.scroll-button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+}
+
+
+footer {
+    background-color: #060606; /* Fond noir pour le footer */
+    color: #ffffff; /* Couleur du texte */
+    text-align: left; /* Alignement à gauche */
+    padding: 20px; /* Espacement interne */
+}
+
+.footer-container {
+    display: flex; /* Utilise Flexbox pour le layout */
+    justify-content: space-between; /* Espace entre les sections */
+    align-items: flex-start; /* Aligne les éléments en haut */
+}
+
+.footer-section {
+    flex: 1; /* Chaque section prend un espace égal */
+    margin-right: 20px; /* Espace entre les sections */
+}
+
+.footer-section h3 {
+    margin-top: 0; /* Enlève la marge supérieure */
+}
+
+.footer-section ul {
+    list-style-type: none; /* Enlève les puces */
+    padding: 0; /* Enlève le padding */
+}
+
+.footer-section li {
+    margin-bottom: 10px; /* Espace entre les éléments de liste */
+}
+
+.footer-section a {
+    color: #ffffff; /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement */
+}
+
+.footer-section a:hover {
+    text-decoration: underline; /* Soulignement au survol */
+}
+
+.footer-social {
+    display: flex; /* Aligne les icônes sociales horizontalement */
+}
+
+footer p {
+    text-align: center; /* Centre le texte des droits d'auteur */
+    margin-top: 20px; /* Espace au-dessus */
+    font-size: 0.8em; /* Taille de police pour les droits d'auteur */
+    color: #aaa; /* Couleur plus claire pour le texte */
+}
+
+.social-icon {
+    width: 30px; /* Ajuste la taille des icônes */
+    height: 30px; /* Ajuste la taille des icônes */
+    margin-right: 10px; /* Espace entre les icônes */
+}
+

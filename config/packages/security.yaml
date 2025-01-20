@@ -50,21 +50,50 @@ security:
       form_login:  # Authentification par formulaire
         login_path: app_login  # La route pour afficher le formulaire de connexion
         check_path: /login  # La route où les informations de connexion sont envoyées via une requête POST
-        default_target_path: /users  # Après une connexion réussie, l'utilisateur est redirigé vers la page /users
+        default_target_path: /  # Après une connexion réussie, l'utilisateur est redirigé vers la page d'accueil
       logout:  # Gestion de la déconnexion
         path: /logout  # La route pour se déconnecter
      
 
-  # Configuration des contrôles d'accès (qui peut accéder à quelles routes en fonction de son rôle)
+
   access_control:
-    # Autorise l'accès à la page de connexion sans être authentifié
-    - { path: ^/login, roles: PUBLIC_ACCESS }  # La page /login est publique (tout le monde peut y accéder)
+  # 🚪 Connexion libre
+  - { path: ^/login, roles: PUBLIC_ACCESS }
 
-    # Autorise l'accès à la page de déconnexion sans être authentifié
-    - { path: ^/logout, roles: PUBLIC_ACCESS }  # La page /logout est publique (tout le monde peut y accéder)
+  # 🔒 Déconnexion uniquement pour les utilisateurs connectés
+  - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
 
-    # Autorise l'accès à la page d'inscription sans être authentifié
-    - { path: ^/users/new, roles: PUBLIC_ACCESS }  # La page /users/new (inscription) est publique (tout le monde peut y accéder)
+  # ✉️ Page de contact libre
+  - { path: ^/contact, roles: PUBLIC_ACCESS }
 
-    # Restreint l'accès à la page des utilisateurs (/users) uniquement aux utilisateurs complètement authentifiés
-    - { path: ^/users, roles: IS_AUTHENTICATED_FULLY }  # L'accès à la page /users est restreint aux utilisateurs qui sont entièrement authentifiés
+  # 👤 Page profil uniquement pour les utilisateurs connectés
+  - { path: ^/profil, roles: ROLE_USER }
+
+  # 📰 Lecture des articles autorisée à tous
+  - { path: ^/articles/\d+$, roles: PUBLIC_ACCESS } # Voir un article (ex: /articles/1)
+
+  # ✏️ Création, modification, suppression d'articles → Réservé aux admins
+  - { path: ^/articles/create, roles: ROLE_ADMIN }
+  - { path: ^/articles/\d+/edit, roles: ROLE_ADMIN }
+  - { path: ^/articles/\d+/delete, roles: ROLE_ADMIN }
+
+  # 🔒 Accès complet à l'administration réservé aux admins
+  - { path: ^/admin, roles: ROLE_ADMIN }
+
+  # 📦 Accès libre aux assets (images, CSS, JS)
+  - { path: ^/uploads, roles: PUBLIC_ACCESS }
+  - { path: ^/images, roles: PUBLIC_ACCESS }
+  - { path: ^/css, roles: PUBLIC_ACCESS }
+  - { path: ^/js, roles: PUBLIC_ACCESS }
+
+  
+  - { path: ^/, roles: PUBLIC_ACCESS }
+    
+
+
+
+
+
+
+
+   

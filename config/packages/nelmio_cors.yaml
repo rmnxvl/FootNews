@@ -1,0 +1,16 @@
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['http://localhost:4200'] # Adresse de l'application Angular
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        allow_headers: ['Content-Type', 'Authorization']
+        expose_headers: ['Link', 'Authorization']
+        max_age: 3600
+
+    paths:
+        '^/api/': # Chemin de l'API Symfony
+            allow_origin: ['http://localhost:4200']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+            allow_headers: ['Content-Type', 'Authorization']
+            expose_headers: ['Link', 'Authorization']
+            max_age: 3600

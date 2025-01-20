@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Home | FootNews{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/accueil.css') }}">
+{% endblock %}
 {% block body %}
 <div class="container mt-5">
     <h1 class="mb-4">{{ article.titre }}</h1>
 
-    <p><strong>Catégorie :</strong> {{ article.categorie }}</p>
     <p><strong>Contenu :</strong></p>
     <p>{{ article.contenu }}</p>
 
@@ -16,8 +20,8 @@
             {% for comment in comments %}
                 <li class="list-group-item">
                     <p>
-                        <strong>{{ comment.author.name }}</strong> - 
-                        <small class="text-muted">{{ comment.createdAt|date('d/m/Y H:i') }}</small>
+                        <strong>{{ comment.author.username }}</strong> <!-- Correction ici -->
+                        - <small class="text-muted">{{ comment.createdAt|date('d/m/Y H:i') }}</small>
                     </p>
                     <p>{{ comment.content }}</p>
 

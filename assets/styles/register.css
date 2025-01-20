@@ -1,0 +1,236 @@
+/* FORMULAIRE DE CONNEXION */
+.formulaire-inscription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Formulaire centré verticalement */
+    background: #f2f5ff; /* Fond clair avec une légère couleur */
+}
+
+.contact-form {
+    background: #ffffff; /* Fond blanc pour contraster */
+    padding: 60px;
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    max-width: 900px; /* Formulaire plus vertical */
+    width: 100%; /* Adaptabilité responsive */
+}
+
+.contact-form h2 {
+    text-align: center;
+    color: #4a4a4a; /* Couleur de texte sombre */
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.contact-form p {
+    text-align: center;
+    color: #6d6d6d; /* Texte neutre */
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Style pour la case à cocher et le label */
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Aligne verticalement la case à cocher et le texte */
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 0; /* Évite les marges par défaut qui pourraient désaligner */
+    vertical-align: middle; /* Alignement parfait avec le texte */
+}
+
+.checkbox-container label {
+    color: #333;
+    margin: 0; /* Supprime tout écart de marge verticale */
+    line-height: 16px; /* Assure l'alignement avec la checkbox */
+}
+
+.checkbox-container a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+.checkbox-container a:hover {
+    color: #0056b3;
+}
+
+.contact-form input {
+    width: 100%; /* Champs alignés verticalement */
+    padding: 12px;
+    margin-bottom: 15px; /* Espacement entre les champs */
+    border: 1px solid #dcdcdc; /* Bordure claire */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px;
+    background-color: #f9f9f9; /* Fond légèrement gris */
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus {
+    border-color: #5a7fff; /* Bleu léger lors du focus */
+    outline: none;
+}
+
+.contact-form button {
+    width: 100%; /* Bouton centré et large */
+    padding: 12px;
+    background-color: #5a7fff; /* Bleu agréable */
+    color: #ffffff; /* Texte blanc */
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #4867cc; /* Bleu plus foncé au survol */
+}
+
+
+
+/* Message d'erreur si une donnée est rentrée si elle est disponible ou non */
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert-danger {
+    background-color: #ffe6e6; /* Rouge clair */
+    color: #d9534f; /* Rouge vif */
+    border: 1px solid #f5c6cb;
+}
+
+.alert i {
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Pied de page */
+footer {
+    background-color: #f0f0f0; /* Fond sombre */
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+    padding: 5px 0;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section a img {
+    height: 30px;
+    margin-right: 5px;
+    transition: transform 0.3s;
+}
+
+.footer-section a:hover img {
+    transform: scale(1.1);
+}
+
+.copyright p {
+    color: rgb(0, 0, 0);
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}

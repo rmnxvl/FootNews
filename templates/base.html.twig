@@ -1,19 +1,210 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+    {# ✅ Titre dynamique de chaque page #}
+    <title>{% block title %}FootNews{% endblock %}</title>
+
+    {# ✅ Favicon (compatible tous navigateurs) #}
+    <link rel="icon" type="image/png" href="{{ asset('/favicon.png') }}">
+    
+    {# ✅ Feuilles de styles globales #}
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {# ✅ Styles spécifiques aux pages #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<!-- Barre de navigation -->
+<header>
+    <div class="navbar">
+         <!-- Logo -->
+         <a href="/" class="logosite">
+         <img id="logo" src="{{ asset('/images/logo-light.png') }}" alt="Logo">
+
+        </a>
+  
+      <!-- Menu principal -->
+      <nav class="nav-menu">
+        <a href="/" class="nav-button">Accueil</a>
+  
+        <!-- Dropdown Les Équipes -->
+        <!-- Menu déroulant Les Équipes -->
+<div class="dropdown">
+    <button class="dropbtn">Les Équipes</button>
+    <div class="dropdown-content">
+        <h4>Équipes les plus suivies dans ton pays</h4>
+        <div class="dropdown-grid">
+            <a href="/psg"><img src="{{ asset('Images/psg.png') }}" alt="PSG"> PSG</a>
+            <a href="/realmadrid"><img src="{{ asset('Images/realmadrid.png') }}" alt="Real Madrid"> Real Madrid</a>
+            <a href="/om"><img src="{{ asset('Images/om.png') }}" alt="OM"> Olympique de Marseille</a>
+            <a href="/fcb"><img src="{{ asset('Images/fcb.png') }}" alt="FC Barcelone"> FC Barcelone</a>
+            <a href="/lyon"><img src="{{ asset('Images/lyon.png') }}" alt="Olympique Lyonnais"> Olympique Lyonnais</a>
+            <a href="/manchestercity"><img src="{{ asset('Images/manchestercity.png') }}" alt="Manchester City"> Manchester City</a>
+            <a href="/saintetienne"><img src="{{ asset('Images/saintetienne.svg') }}" alt="Saint-Étienne"> Saint-Étienne</a>
+            <a href="/nantes"><img src="{{ asset('Images/nantes.png') }}" alt="FC Nantes"> FC Nantes</a>
+            <a href="/rennes"><img src="{{ asset('Images/rennes.png') }}" alt="Stade Rennais"> Stade Rennais</a>
+            <a href="/rclens"><img src="{{ asset('Images/rclens.png') }}" alt="RC Lens"> RC Lens</a>
+        </div>
+    </div>
+</div>
+<!-- Dropdown Compétitions -->
+<div class="dropdown">
+    <button class="dropbtn">Compétitions</button>
+    <div class="dropdown-content">
+        <h4>Compétitions populaires</h4>
+        <div class="dropdown-grid">
+            <a href="euro2024.html"><img src="{{ asset('Images/euro2024.svg') }}" alt="EURO 2024"> EURO 2024</a>
+            <a href="ligue1.html"><img src="{{ asset('Images/ligue1.png') }}" alt="Ligue 1"> Ligue 1</a>
+            <a href="laliga.html"><img src="{{ asset('Images/laliga.png') }}" alt="La Liga"> La Liga</a>
+            <a href="premierleague.html"><img src="{{ asset('Images/premierleague.png') }}" alt="Premier League"> Premier League</a>
+            <a href="uefachampionsleague.html"><img src="{{ asset('Images/liguedeschampions.png') }}" alt="UEFA Champions League"> UEFA Champions League</a>
+            <a href="seriea.html"><img src="{{ asset('Images/serieA.png') }}" alt="Serie A"> Serie A</a>
+            <a href="bundesliga.html"><img src="{{ asset('Images/bundesliga.png') }}" alt="Bundesliga"> Bundesliga</a>
+            <a href="uefaeuropaleague.html"><img src="{{ asset('Images/europaleague.svg') }}" alt="UEFA Europa League"> UEFA Europa League</a>
+            <a href="coupedefrance.html"><img src="{{ asset('Images/coupedefrance.jpeg') }}" alt="Coupe de France"> Coupe de France</a>
+            <a href="ligaportugal.html"><img src="{{ asset('Images/ligaportugal.png') }}" alt="Liga Portugal"> Liga Portugal</a>
+            <a href="proleague.html"><img src="{{ asset('Images/proleague.avif') }}" alt="Pro League"> Pro League</a>
+            <a href="dfbpokal.html"><img src="{{ asset('Images/dfbpokal.png') }}" alt="DFB-Pokal"> DFB-Pokal</a>
+            <a href="amical.html"><img src="{{ asset('Images/matchamicaux.avif') }}" alt="Amicaux internationaux"> Amicaux internationaux</a>
+            <a href="national.html"><img src="{{ asset('Images/championnatnationale.avif') }}" alt="Championnat National"> Championnat National</a>
+        </div>
+        <div class="dropdown-link">
+            <a href="allcompetitions.html">Toutes les compétitions</a>
+        </div>
+    </div>
+</div>
+        <a href="/contact" class="nav-button">Contact</a>
+      </nav>
+     <div class="theme-toggle">
+  <input type="checkbox" id="darkmode-toggle" />
+  <label for="darkmode-toggle">
+     <!-- Toggle mode sombre/clair -->
+  <div class="theme-toggle">
+    <input type="checkbox" id="darkmode-toggle" />
+    <label for="darkmode-toggle">
+      <span class="material-icons sun">light_mode</span>
+      <span class="material-icons moon">dark_mode</span>
+    </label>
+  </div>
+  <div class="burger-menu">
+    <i class="fa fa-bars"></i>
+</div>
+
+  </label>
+</div>
+          <!-- Barre verticale -->
+    <div class="separator"></div>
+    <!-- Coté droit de la barre de navigation -->
+<div class="nav-right">
+    <!-- Bouton de recherche -->
+    <a href="#" class="search-button" onclick="toggleSearchPopup()">
+        <i class="fa fa-search"></i>
+    </a>
+{% if app.user %}
+    <div class="dropdown-profil">
+        <button class="dropbtn-profil">
+            {% if app.user.profilePicture is not empty %}
+                <img src="{{ asset('uploads/profile_pictures/' ~ app.user.profilePicture) }}" alt="Photo de profil" class="nav-profile-img navbar-profile-img">
+            {% else %}
+                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar par défaut" class="nav-profile-img navbar-profile-img">
+            {% endif %}
+        </button>
+
+        <div class="dropdown-content-profil">
+            <a href="{{ path('user_profil') }}">Mon Compte</a>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('user_index') }}">CRUD Utilisateurs</a>
+                <a href="{{ path('article_index') }}">CRUD Articles</a>
+                <a href="{{ path('admin_article_create') }}">CRUD Équipes</a>
+                <a href="{{ path('admin_article_create') }}">CRUD Compétitions</a>
+            {% endif %}
+
+            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+    </div>
+{% else %}
+    <a href="{{ path('app_login') }}" class="auth-button">Se connecter</a>
+    <a href="{{ path('user_register') }}" class="signup-button">S'inscrire</a>
+{% endif %}
+
+<!-- Pop-up de recherche -->
+<div id="search-popup" class="search-popup">
+    <div class="search-popup-content">
+         <!-- ✅ Formulaire de recherche -->
+    <form method="get" action="{{ path('article_index') }}" class="search-input">
+        <input type="text" name="search" class="form-control me-2" placeholder="Rechercher un article..." value="{{ app.request.query.get('search') }}">
+        <button type="submit" class="btn-submit">Rechercher</button>
+    </form>
+        <div class="search-categories">
+            <button class="category-button active" href="/contact">Tous</button>
+            <button class="category-button"> Articles </button>
+            <button class="category-button">Équipes</button>
+            <button class="category-button">Joueurs</button>
+        </div>
+        <div class="search-suggestions">
+            <h3>Suggestions de recherches</h3>
+            <ul>
+                <li><a href="ligue1.html">Ligue 1 McDonald's <span>🇫🇷</span></a></li>
+                <li><a href="premierleague.html">Premier League <span>🇬🇧</span></a></li>
+                <li><a href="realmadrid.html">Real Madrid <span>🇪🇸</span></a></li>
+                <li><a href="fcb.html">Barcelone <span>🇪🇸</span></a></li>
+                <li><a href="olympiquedemarseille.html">Marseille <span>🇫🇷</span></a></li>
+                <li><a href="psg.html">PSG<span>🇫🇷</span></a></li>
+                <li><a href="laliga.html">LaLiga<span>🇪🇸</span></a></li>
+                <li><a href="manchestercity.html">Manchester City<span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></a></li>
+                <li><a href="bundesliga.html">Bundesliga<span>🇩🇪</span></a></li>
+                <li><a href="intermiami.html"> Inter Miami<span>🇺🇸</span></a></li>
+                <li><a href="alnassr.html"> Al Nassr<span>🇸🇦</span></a></li>
+                <li><a href="seriea.html"> Série A<span>🇮🇹</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+  </header>
         {% block body %}{% endblock %}
     </body>
+    <!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>LIENS RAPIDES</h3>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>MENTIONS LÉGALES</h3>
+            <ul>
+                <li><a href="/">Conditions d’utilisation</a></li>
+                <li><a href="/">Politique de confidentialité</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>SUIVEZ-NOUS</h3>
+            <a href="https://www.instagram.com"><img src="{{ asset('Images/Instagram_logo_2022.svg') }}" alt="Instagram"></a>
+            <a href="https://x.com"><img src="{{ asset('Images/x.avif') }}" alt="X"></a>
+            <a href="https://www.facebook.com"><img src="{{ asset('Images/facebook.png') }}" alt="Facebook"></a>
+            <a href="https://www.tiktok.com"><img src="{{ asset('Images/logotiktok.png') }}" alt="TikTok"></a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© FootNews 2025 - By RMNXVL</p>
+    </div>
+</footer>
+
+<script src="{{ asset('Javascript/dropdown.js') }}"></script>
+<script src="{{ asset('Javascript/theme.js') }}"></script>
+<script src="{{ asset('Javascript/menuburger.js') }}"></script>
+<script src="{{ asset('Javascript/recherche.js') }}"></script>
+</div>
 </html>
