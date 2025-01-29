@@ -3,27 +3,65 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+use App\Repository\EquipeRepository;
+use App\Repository\JoueurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RechercheController extends AbstractController
 {
-    #[Route('/articles/recherche', name: 'article_search', methods: ['GET'])]
-    public function search(Request $request, ArticleRepository $articleRepository): Response
-    {
-        // Récupère le mot-clé de la requête
-        $search = $request->query->get('search', '');
+    #[Route('/search', name: 'search', methods: ['GET'])]
+    public function search(
+        Request $request,
+        ArticleRepository $articleRepository,
+        EquipeRepository $equipeRepository,
+        JoueurRepository $joueurRepository
+    ): JsonResponse {
+        $query = $request->query->get('q', ''); // Texte saisi par l'utilisateur
+        $results = []; // Tableau des résultats
 
-        // Recherche des articles en fonction du mot-clé
-        $articles = $articleRepository->searchArticles($search, null);
+        if (!empty($query)) {
+            // 🔍 Rechercher des articles
+            $articles = $articleRepository->searchArticles($query);
+            foreach ($articles as $article) {
+                $results[] = [
+                    'type' => 'article',
+                    'id' => $article->getId(),
+                    'title' => $article->getTitre(),
+                    'content' => mb_substr($article->getContenu(), 0, 100) . '...',
+                    'image' => $article->getImage() ? '/uploads/articles/' . $article->getImage() : null,
+                ];
+            }
 
-        // Retourne la vue avec les articles trouvés
-        return $this->render('articles/liste.html.twig', [
-            'articles' => $articles,
-            'categorie' => null,
-            'search' => $search,
-        ]);
+            // 🔍 Rechercher des équipes
+            $equipes = $equipeRepository->searchTeams($query);
+            foreach ($equipes as $equipe) {
+                $results[] = [
+                    'type' => 'team',
+                    'id' => $equipe->getId(),
+                    'name' => $equipe->getNom(), // Nom de l'équipe
+                    'country' => $equipe->getPays(), // Pays
+                    'logo' => $equipe->getLogo() ? '/uploads/teams/' . $equipe->getLogo() : null,
+                ];
+            }
+
+            // 🔍 Rechercher des joueurs
+            $joueurs = $joueurRepository->searchPlayers($query);
+            foreach ($joueurs as $joueur) {
+                $results[] = [
+                    'type' => 'player',
+                    'id' => $joueur->getId(),
+                    'name' => $joueur->getNomComplet(), // Nom complet
+                    'age' => $joueur->getAge(), // Âge
+                    'team' => $joueur->getEquipe() ? $joueur->getEquipe()->getNom() : null, // Équipe associée
+                    'country' => $joueur->getPays(), // Pays
+                    'image' => $joueur->getImage() ? '/uploads/players/' . $joueur->getImage() : null,
+                ];
+            }
+        }
+
+        return new JsonResponse(['results' => $results]); // Renvoie tous les résultats
     }
 }

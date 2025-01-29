@@ -27,7 +27,7 @@
     <div class="navbar">
          <!-- Logo -->
          <a href="/" class="logosite">
-         <img id="logo" src="{{ asset('/images/logo-light.png') }}" alt="Logo">
+         <img id="logo" src="{{ asset('/Images/logo-light.png') }}" alt="Logo">
 
         </a>
   
@@ -126,6 +126,7 @@
                 <a href="{{ path('article_index') }}">CRUD Articles</a>
                 <a href="{{ path('admin_article_create') }}">CRUD Équipes</a>
                 <a href="{{ path('admin_article_create') }}">CRUD Compétitions</a>
+                <a href="{{ path('crud_joueurs_index') }}">CRUD Joueurs</a>
             {% endif %}
 
             <a href="{{ path('app_logout') }}">Se déconnecter</a>
@@ -139,39 +140,115 @@
 <!-- Pop-up de recherche -->
 <div id="search-popup" class="search-popup">
     <div class="search-popup-content">
-         <!-- ✅ Formulaire de recherche -->
-    <form method="get" action="{{ path('article_index') }}" class="search-input">
-        <input type="text" name="search" class="form-control me-2" placeholder="Rechercher un article..." value="{{ app.request.query.get('search') }}">
-        <button type="submit" class="btn-submit">Rechercher</button>
-    </form>
+
+        <!-- ✅ Formulaire de recherche -->
+        <form class="search-input">
+            <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Rechercher un article, une équipe ou un joueur...">
+        </form>
+
+        <!-- ✅ Catégories -->
         <div class="search-categories">
-            <button class="category-button active" href="/contact">Tous</button>
-            <button class="category-button"> Articles </button>
-            <button class="category-button">Équipes</button>
-            <button class="category-button">Joueurs</button>
+            <button class="category-button active" data-category="all">Tous</button>
+            <button class="category-button" data-category="articles">Articles</button>
+            <button class="category-button" data-category="teams">Équipes</button>
+            <button class="category-button" data-category="players">Joueurs</button>
         </div>
+
+        <!-- ✅ Suggestions -->
         <div class="search-suggestions">
             <h3>Suggestions de recherches</h3>
             <ul>
-                <li><a href="ligue1.html">Ligue 1 McDonald's <span>🇫🇷</span></a></li>
-                <li><a href="premierleague.html">Premier League <span>🇬🇧</span></a></li>
-                <li><a href="realmadrid.html">Real Madrid <span>🇪🇸</span></a></li>
-                <li><a href="fcb.html">Barcelone <span>🇪🇸</span></a></li>
-                <li><a href="olympiquedemarseille.html">Marseille <span>🇫🇷</span></a></li>
-                <li><a href="psg.html">PSG<span>🇫🇷</span></a></li>
-                <li><a href="laliga.html">LaLiga<span>🇪🇸</span></a></li>
-                <li><a href="manchestercity.html">Manchester City<span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></a></li>
-                <li><a href="bundesliga.html">Bundesliga<span>🇩🇪</span></a></li>
-                <li><a href="intermiami.html"> Inter Miami<span>🇺🇸</span></a></li>
-                <li><a href="alnassr.html"> Al Nassr<span>🇸🇦</span></a></li>
-                <li><a href="seriea.html"> Série A<span>🇮🇹</span></a></li>
+                <li>
+                    <a href="/ldc">
+                        <img src="{{ asset('Images/ldc.jpg') }}" alt="Ligue des Champions UEFA" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Ligue des Champions UEFA</strong>
+                            <span>🇪🇺 Europe</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ligue1">
+                        <img src="{{ asset('Images/l1.jpg') }}" alt="Ligue 1 McDonald's" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Ligue 1 McDonald's</strong>
+                            <span>🇫🇷 France</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/coupeduroi">
+                        <img src="{{ asset('Images/cdr.webp') }}" alt="Coupe du Roi" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Coupe du Roi</strong>
+                            <span>🇪🇸 Espagne</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/laliga">
+                        <img src="{{ asset('Images/laliga.png') }}" alt="Liga" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Liga</strong>
+                            <span>🇪🇸 Espagne</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/realmadrid">
+                        <img src="{{ asset('Images/realmadridimg.png') }}" alt="Real Madrid" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Real Madrid</strong>
+                            <span>🇪🇸 Espagne</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/premierleague">
+                        <img src="{{ asset('Images/premierleague.png') }}" alt="Premier League" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Premier League</strong>
+                            <span>🏴 Angleterre</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/fcb">
+                        <img src="{{ asset('Images/fcb.png') }}" alt="Barcelone" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Barcelone</strong>
+                            <span>🇪🇸 Espagne</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/psg">
+                        <img src="{{ asset('Images/psg.png') }}" alt="PSG" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>PSG</strong>
+                            <span>🇫🇷 France</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/kylianmbappe">
+                        <img src="{{ asset('Images/mbappé.png') }}" alt="Kylian Mbappé" class="suggestion-icon">
+                        <div class="suggestion-text">
+                            <strong>Kylian Mbappé</strong>
+                            <span>Real Madrid CF - 26 ans - France</span>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-</div>
-  </header>
+</div> 
+</header>
         {% block body %}{% endblock %}
-    </body>
     <!-- FOOTER -->
 <footer>
     <div class="footer-container">

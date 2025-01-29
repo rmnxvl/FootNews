@@ -11,30 +11,37 @@
     <div class="formulaire-de-contact">
         <div class="contact-form">
             <h2>Contact</h2>
-            <p>Besoin d'aide ? Contactez-nous</p>
-            <form action="{{ path('app_contact') }}" method="POST">
+            <p>Besoin d'aide ? Contactez-nous en remplissant ce formulaire.</p>
+            
+            {# Affiche les messages flash #}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            
+            {# Affiche le formulaire Symfony #}
+            {{ form_start(form) }}
                 <div class="form-group">
-                    <input type="text" name="identifiant" placeholder="👤 Identifiant" required>
+                    {{ form_label(form.identifiant) }}
+                    {{ form_widget(form.identifiant) }}
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="✉️ Email" required>
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
                 </div>
                 <div class="form-group">
-                    <select name="sujet" required>
-                        <option value="">Choisir un sujet</option>
-                        <option value="support">Support</option>
-                        <option value="articles">Articles</option>
-                        <option value="connexion">Connexion/Inscription</option>
-                        <option value="autres">Autres</option>
-                    </select>
+                    {{ form_label(form.sujet) }}
+                    {{ form_widget(form.sujet) }}
                 </div>
-                <div class="message">
-                    <textarea name="message" id="message" placeholder="Votre message" required></textarea>
+                <div class="form-group">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message) }}
                 </div>
                 <div class="button-group">
-                    <button type="submit" class="submit-button">Envoyer</button>
+                    {{ form_widget(form.submit) }}
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 </main>

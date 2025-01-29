@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil | FootNews{% endblock %}
+{% block title %}Profil | FootNews{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/profil.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-
+<div class="container">
     {# ✅ Messages de succès ou d'erreur #}
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -21,41 +20,42 @@
         </div>
     {% endfor %}
 
-    {# ✅ Formulaire de modification avec upload de photo de profil #}
-    <form method="post" action="{{ path('user_edit', {'id': user.id}) }}" enctype="multipart/form-data">
-        <div class="mb-3 text-center">
+    {# ✅ Section Profil #}
+    <form method="post" action="{{ path('user_edit', {'id': user.id}) }}" enctype="multipart/form-data" class="profile-form">
+        <div class="profile-left">
             {% if user.profilePicture %}
-                <img src="{{ asset('uploads/profile_pictures/' ~ user.profilePicture) }}" alt="Photo de profil" width="120" class="profile-page-img rounded-circle mb-3">
+                <img src="{{ asset('uploads/profile_pictures/' ~ user.profilePicture) }}" alt="Photo de profil" class="profile-page-img">
             {% else %}
-                <img src="{{ asset('images/default-avatar.png') }}" alt="Photo de profil par défaut" width="120" class="profile-page-img rounded-circle mb-3">
+                <img src="{{ asset('images/default-avatar.png') }}" alt="Photo de profil par défaut" class="profile-page-img">
             {% endif %}
-        </div>
-
-        <div class="mb-3">
             <label for="profile_picture" class="form-label">Changer la photo de profil :</label>
             <input type="file" id="profile_picture" name="profile_picture" class="form-control">
         </div>
 
-        <div class="mb-3">
-            <label for="username" class="form-label">Pseudo :</label>
-            <input type="text" id="username" name="username" value="{{ user.username }}" class="form-control" required>
+        <div class="profile-right">
+            <div class="form-group">
+                <label for="username" class="form-label">Pseudo :</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Nouveau mot de passe :</label>
+                <input type="password" id="password" name="password" class="form-control">
+                <small class="text-muted">Laisse vide si tu ne veux pas changer ton mot de passe.</small>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email :</label>
-            <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control" required>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ton compte ?');">
+                <button type="submit" class="btn btn-danger">Supprimer mon compte</button>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label for="password" class="form-label">Nouveau mot de passe :</label>
-            <input type="password" id="password" name="password" class="form-control">
-            <small class="form-text text-muted">Laisse vide si tu ne veux pas changer ton mot de passe.</small>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-    </form>
-    <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ton compte ?');">
-        <button type="submit" class="btn btn-danger mt-3">Supprimer mon compte</button>
     </form>
 </div>
 {% endblock %}

@@ -2,7 +2,6 @@
 .container {
     max-width: 1500px;
     margin: 0 auto;
-    background: #ffffff;
     border-radius: 8px;
     padding: 20px;
 }
@@ -139,125 +138,143 @@ header {
     color: white;
 }
 
-/* Petits textes explicatifs */
-.text-muted {
-    font-size: 12px;
-    color: #6c757d;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🌙 Conteneur principal */
+body.dark-mode .container {
+    background: #000000; /* Fond sombre */
+    color: #ffffff; /* Texte clair */
+    border-radius: 8px;
+    padding: 20px;
 }
 
-/* Espacement entre les sections */
-.mb-3 {
-    margin-bottom: 20px;
+
+body.dark-mode {
+    background-color: black;
 }
 
-/* Marges */
-.mt-5 {
-    margin-top: 50px;
+/* 🌙 Photo de profil */
+body.dark-mode .profile-page-img {
+    border: 2px solid #444444; /* Bordure sombre */
 }
 
-.mt-3 {
-    margin-top: 30px;
+/* 🌙 Boutons pour les actions */
+body.dark-mode .btn {
+    color: #ffffff; /* Texte blanc */
+    border: 1px solid #444444; /* Bordure sombre */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Boutons */
+/* Bouton principal */
 body.dark-mode .btn-primary {
-    background: #007BFF; /* Bleu primaire plus doux */
-    border: 1px solid #007BFF;
-    color: #fff;
+    background: #26B4FF; /* Bleu principal */
+    color: #ffffff; /* Texte blanc */
+    border: 1px solid #26B4FF;
 }
 
 body.dark-mode .btn-primary:hover {
-    background: #0056b3; /* Bleu plus foncé au survol */
-    border-color: #0056b3;
+    background: #1a93d6; /* Bleu plus foncé */
+    border-color: #1a93d6;
 }
 
+/* Bouton danger */
 body.dark-mode .btn-danger {
-    background: #c82333; /* Rouge primaire plus doux */
-    border: 1px solid #c82333;
-    color: #fff;
+    background: #dc3545; /* Rouge principal */
+    color: #ffffff;
+    border: 1px solid #dc3545;
 }
 
 body.dark-mode .btn-danger:hover {
-    background: #a71d2a; /* Rouge plus foncé au survol */
-    border-color: #a71d2a;
+    background: #bd2130; /* Rouge plus foncé */
+    border-color: #bd2130;
 }
 
+/* Bouton secondaire */
 body.dark-mode .btn-default {
-    background: transparent;
-    color: #b0b0b0; /* Gris clair pour le bouton par défaut */
-    border: 1px solid #444;
+    background: #2a2a2a; /* Fond sombre */
+    color: #ffffff; /* Texte clair */
+    border: 1px solid #444444; /* Bordure sombre */
 }
 
 body.dark-mode .btn-default:hover {
-    background: #2e2e2e; /* Fond légèrement plus clair au survol */
-    border-color: #555;
+    background: #444444; /* Fond plus clair au survol */
+    color: #ffffff; /* Texte clair */
 }
 
-/* Formulaires */
+/* 🌙 Formulaire */
 body.dark-mode .form-label {
-    color: #b3b3b3; /* Gris clair pour les étiquettes */
+    color: #ffffff; /* Texte clair pour les labels */
 }
 
 body.dark-mode .form-control {
-    color: #fff; /* Texte blanc */
-    background-color: #2e2e2e; /* Fond sombre */
-    border: 1px solid #555; /* Bordure sombre */
+    background: #333333; /* Fond sombre pour les champs */
+    color: #ffffff; /* Texte clair */
+    border: 1px solid #444444; /* Bordure sombre */
 }
 
 body.dark-mode .form-control:focus {
-    border-color: #4a90e2; /* Bleu au focus */
-    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25); /* Ombre bleutée */
+    border-color: #26B4FF; /* Bleu au focus */
+    box-shadow: 0 0 0 0.2rem rgba(38, 180, 255, 0.25); /* Effet lumineux bleu */
 }
 
-/* Messages de succès ou d'erreur */
+/* 🌙 Messages de succès ou d'erreur */
+body.dark-mode .alert {
+    color: #ffffff; /* Texte clair */
+    border: 1px solid #444444; /* Bordure sombre */
+    background: #2a2a2a; /* Fond sombre */
+}
+
 body.dark-mode .alert-success {
-    background-color: #223a24; /* Fond vert sombre */
-    color: #d4edda; /* Texte vert clair */
-    border-color: #1c2e1e;
+    color: #28a745; /* Texte vert clair */
+    background: #233d28; /* Fond vert foncé */
+    border-color: #28a745; /* Bordure verte */
 }
 
 body.dark-mode .alert-danger {
-    background-color: #3e2023; /* Fond rouge sombre */
-    color: #f8d7da; /* Texte rouge clair */
-    border-color: #36181b;
+    color: #e57373; /* Texte rouge clair */
+    background: #3d2022; /* Fond rouge foncé */
+    border-color: #e57373; /* Bordure rouge */
+}
+
+/* 🌙 Bouton "Changer la photo de profil" */
+body.dark-mode .account-settings-fileinput {
+    display: none;
+}
+
+body.dark-mode .btn-outline-primary {
+    border: 1px solid #26B4FF; /* Bordure bleue */
+    color: #26B4FF; /* Texte bleu */
+    background: transparent;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+    background: #26B4FF; /* Fond bleu */
+    color: #ffffff; /* Texte blanc */
+}
+
+/* 🌙 Petits textes explicatifs */
+body.dark-mode .text-muted {
+    font-size: 12px;
+    color: #bbbbbb; /* Texte gris clair */
+}
+
+/* 🌙 Espacement entre les sections */
+body.dark-mode .mb-3 {
+    margin-bottom: 20px;
+}
+
+body.dark-mode .mt-3 {
+    margin-top: 30px;
 }

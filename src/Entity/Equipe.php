@@ -2,66 +2,61 @@
 
 namespace App\Entity;
 
-use App\Repository\EquipeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EquipeRepository::class)]
+#[ORM\Entity]
 class Equipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titreEquipe = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $nom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $logoEquipe = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $pays = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $localisation = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $logo = null;
 
     // Getters et setters
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitreEquipe(): ?string
+    public function getNom(): ?string
     {
-        return $this->titreEquipe;
+        return $this->nom;
     }
 
-    public function setTitreEquipe(string $titreEquipe): self
+    public function setNom(string $nom): self
     {
-        $this->titreEquipe = $titreEquipe;
-
+        $this->nom = $nom;
         return $this;
     }
 
-    public function getLogoEquipe(): ?string
+    public function getPays(): ?string
     {
-        return $this->logoEquipe;
+        return $this->pays;
     }
 
-    public function setLogoEquipe(?string $logoEquipe): self
+    public function setPays(?string $pays): self
     {
-        $this->logoEquipe = $logoEquipe;
-
+        $this->pays = $pays;
         return $this;
     }
 
-    public function getLocalisation(): ?string
+    public function getLogo(): ?string
     {
-        return $this->localisation;
+        return $this->logo;
     }
 
-    public function setLocalisation(?string $localisation): self
+    public function setLogo(?string $logo): self
     {
-        $this->localisation = $localisation;
-
+        $this->logo = $logo;
         return $this;
     }
 }

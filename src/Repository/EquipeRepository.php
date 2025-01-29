@@ -16,28 +16,23 @@ class EquipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Equipe::class);
     }
 
-    //    /**
-    //     * @return Equipe[] Returns an array of Equipe objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Rechercher des équipes par mot-clé dans le nom ou le pays.
+     *
+     * @param string|null $keyword
+     * @return Equipe[]
+     */
+    public function searchTeams(?string $keyword): array
+    {
+        $qb = $this->createQueryBuilder('e'); // Alias pour l'entité `Equipe`
 
-    //    public function findOneBySomeField($value): ?Equipe
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if (!empty($keyword)) {
+            $qb->andWhere('e.nom LIKE :keyword OR e.pays LIKE :keyword') // Utilise les bons champs
+               ->setParameter('keyword', '%' . $keyword . '%');
+        }
+
+        return $qb->orderBy('e.id', 'DESC')
+                  ->getQuery()
+                  ->getResult();
+    }
 }

@@ -229,7 +229,9 @@ body.dark-mode .container {
 }
 
 
-
+body.dark-mode {
+    background-color: black;
+}
 
 
 /* 🌙 Section des actualités */

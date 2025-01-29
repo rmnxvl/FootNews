@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifier Joueurs {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/edit-joueurs.css') }}">
+<h1> Profil Joueur </h1>
+
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.nom_complet) }}
+        {{ form_widget(form.nom_complet) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.age) }}
+        {{ form_widget(form.age) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.pays) }}
+        {{ form_widget(form.pays) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.imageFile) }}
+        {{ form_widget(form.imageFile) }}
+        {% if joueur.image %}
+            <p>Image actuelle :</p>
+            <img src="{{ asset('uploads/players/' ~ joueur.image) }}" alt="{{ joueur.nomComplet }}" width="100">
+        {% endif %}
+    </div>
+    <button class="btn btn-primary">Enregistrer</button> {# Unique bouton personnalisé #}
+{{ form_end(form, {'render_rest': false}) }} {# Empêche le rendu automatique des champs restants #}
+
+<a href="{{ path('crud_joueurs_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CRUD Joueurs {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/index-joueurs.css') }}">
+<h1>Liste des joueurs</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Âge</th>
+            <th>Pays</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for joueur in joueurs %}
+            <tr>
+                <td>{{ joueur.id }}</td>
+                <td>{{ joueur.nomComplet }}</td>
+                <td>{{ joueur.age }}</td>
+                <td>{{ joueur.pays }}</td>
+                <td>
+                    <img src="{{ asset('uploads/players/' ~ joueur.image) }}" alt="{{ joueur.nomComplet }}" width="50">
+                </td>
+                <td>
+                    <a href="{{ path('crud_joueurs_edit', {id: joueur.id}) }}">Modifier</a>
+                <form action="{{ path('crud_joueurs_delete', {id: joueur.id}) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</button>
+                </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
