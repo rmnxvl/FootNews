@@ -13,6 +13,7 @@
         <input type="email" name="_username" placeholder="Adresse e-mail" required>
         <input type="password" name="_password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
+        <a href="{{ path('password_reset') }}" class="reset-password-link">Mot de passe oublié ?</a>
     </form>
 
     {% if error %}

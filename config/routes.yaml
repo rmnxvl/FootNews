@@ -4,7 +4,7 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-api_login: 
+api_login:
     path: /api/login
-
-    
+    controller: App\Controller\SecurityController::login
+    methods: POST

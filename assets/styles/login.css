@@ -64,6 +64,19 @@
     background-color: #4867cc; /* Bleu plus foncé au survol */
 }
 
+.reset-password-link {
+    display: block;
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.reset-password-link:hover {
+    text-decoration: underline;
+}
+
 
 
 

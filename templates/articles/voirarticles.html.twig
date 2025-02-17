@@ -3,13 +3,13 @@
 {% block title %}Home | FootNews{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/accueil.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/article.css') }}">
 {% endblock %}
 {% block body %}
 <div class="container mt-5">
     <h1 class="mb-4">{{ article.titre }}</h1>
 
-    <p><strong>Contenu :</strong></p>
+
     <p>{{ article.contenu }}</p>
 
     <hr>
@@ -24,16 +24,6 @@
                         - <small class="text-muted">{{ comment.createdAt|date('d/m/Y H:i') }}</small>
                     </p>
                     <p>{{ comment.content }}</p>
-
-                    {# Boutons Modifier/Supprimer visibles si l'utilisateur est l'auteur ou un admin #}
-                    {% if app.user and (app.user == comment.author or is_granted('ROLE_ADMIN')) %}
-                        <a href="{{ path('commentaire_edit', { id: comment.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
-                        <form method="post" action="{{ path('commentaire_delete', { id: comment.id }) }}" style="display: inline;" 
-                              onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-                            <button class="btn btn-danger btn-sm">Supprimer</button>
-                        </form>
-                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
@@ -59,7 +49,5 @@
         <p class="text-danger">Vous devez être connecté pour ajouter un commentaire.</p>
         <a href="{{ path('app_login') }}" class="btn btn-success">Se connecter</a>
     {% endif %}
-
-    <a href="{{ path('article_index') }}" class="btn btn-secondary mt-4">Retour à la liste des articles</a>
 </div>
 {% endblock %}

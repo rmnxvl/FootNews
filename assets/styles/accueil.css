@@ -5,6 +5,8 @@ html, body {
     overflow-x: hidden;
 }
 
+
+
 /* Section principale */
 .news-section {
     padding: 20px;
@@ -19,6 +21,8 @@ html, body {
     margin-bottom: 30px;
     color: #333;
 }
+
+
 
 /* Grille des articles */
 .news-grid {
@@ -86,53 +90,11 @@ html, body {
 
 
 
-/* Section vidéos */
-.video-section {
-    padding: 20px;
-    max-width: 1500px; /* Limite la section à 1500px */
-    margin: 0 auto; /* Centre la section */
-}
 
-.video-section h2 {
-    text-align: left;
-    color: rgb(0, 0, 0);
-}
 
-.video-section p {
-    text-align: left;
-    color: rgb(0, 0, 0);
-}
 
-.video-header {
-    margin-bottom: 20px;
-}
 
-/* Conteneur vidéo pour alignement horizontal */
-.video-container {
-    display: flex; /* Aligne les vidéos en ligne */
-    justify-content: space-between; /* Espacement entre les vidéos */
-    align-items: center; /* Centre verticalement si nécessaire */
-    flex-wrap: nowrap; /* Pas de retour à la ligne */
-    gap: 10px; /* Espacement entre les vidéos */
-}
 
-.video-item {
-    flex: 0 0 24%; /* Chaque vidéo occupe 24% pour tenir 4 vidéos dans 1500px */
-    max-width: 350px; /* Limite la largeur de chaque vidéo */
-    text-align: center; /* Centrer le texte sous la vidéo */
-}
-
-.video-item iframe {
-    width: 100%; /* S'adapte à la largeur de l'élément parent */
-    height: 200px; /* Ajuste la hauteur de la vidéo */
-    border-radius: 10px;
-}
-
-.video-item p {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #000000;
-}
 
 
 

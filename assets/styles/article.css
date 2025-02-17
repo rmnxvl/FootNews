@@ -1,0 +1,118 @@
+.container {
+    max-width: 1500px;
+    background: white;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de l'article */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Contenu de l'article */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Commentaires */
+h3 {
+    margin-top: 30px;
+    color: #222;
+}
+
+.list-group {
+    padding: 0;
+}
+
+.list-group-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.list-group-item p {
+    margin: 5px 0;
+}
+
+.text-muted {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Formulaire d'ajout de commentaire */
+form {
+    margin-top: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #565e64;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Message d'alerte si l'utilisateur n'est pas connecté */
+.text-danger {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Lien retour */
+.btn-secondary.mt-4 {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0;
+}

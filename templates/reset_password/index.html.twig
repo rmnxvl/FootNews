@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisation du Mot de Passe{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/reset.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center">Réinitialisation du mot de passe</h2>
+        <p class="text-center">Entrez votre adresse e-mail pour recevoir un lien de réinitialisation.</p>
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" class="form-control" required placeholder="Entrez votre email">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-3">
+                Recevoir le lien de réinitialisation
+            </button>
+        </form>
+    </div>
+{% endblock %}

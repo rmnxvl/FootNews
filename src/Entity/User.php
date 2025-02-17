@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -12,28 +13,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['comment:read'])] 
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    private ?string $email = null; 
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = []; 
 
     #[ORM\Column]
-    private ?string $password = null;
+    private ?string $password = null; 
 
     #[ORM\Column(length: 50, unique: true)]
+    #[Groups(['comment:read'])] 
     private ?string $username = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $profilePicture = null; 
-
-    // ✅ Getters & Setters
+    #[Groups(['comment:read'])] 
+    private ?string $profilePicture = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -50,7 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';  // Attribution automatique du rôle USER
+        $roles[] = 'ROLE_USER'; // Chaque utilisateur a au moins ce rôle
         return array_unique($roles);
     }
 
@@ -71,35 +95,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-        return $this;
-    }
-
     public function eraseCredentials(): void
     {
-        // Pas de données sensibles à effacer
+        // Si des données sensibles sont stockées temporairement, les effacer ici.
     }
 
     public function getUserIdentifier(): string
     {
-        return $this->email;  // Utilisation de l'email comme identifiant
-    }
-
-    public function getProfilePicture(): ?string
-    {
-        return $this->profilePicture;
-    }
-
-    public function setProfilePicture(?string $profilePicture): self
-    {
-        $this->profilePicture = $profilePicture;
-        return $this;
+        return $this->email; // Symfony utilise `getUserIdentifier()` au lieu de `getUsername()`
     }
 }
