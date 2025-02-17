@@ -1,5 +1,5 @@
 security:
-  # Configuration des hashers de mot de passe
+  access_denied_url: /access-denied
   password_hashers:
     # Spécifie que les mots de passe des utilisateurs qui implémentent PasswordAuthenticatedUserInterface seront hachés avec l'algorithme choisi ici
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
