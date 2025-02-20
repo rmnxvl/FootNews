@@ -3,284 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {# ✅ Titre dynamique de chaque page #}
     <title>{% block title %}FootNews{% endblock %}</title>
-
-    {# ✅ Favicon (compatible tous navigateurs) #}
     <link rel="icon" type="image/png" href="{{ asset('/favicon.png') }}">
     
-    {# ✅ Feuilles de styles globales #}
+    <!-- Ajout du CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    {# ✅ Styles spécifiques aux pages #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
-<!-- Barre de navigation -->
-<header>
-    <div class="navbar">
-         <!-- Logo -->
-         <a href="/" class="logosite">
-         <img id="logo" src="{{ asset('/Images/logo-light.png') }}" alt="Logo">
+    <!-- Nouvelle navbar Bootstrap -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <img id="logo" src="{{ asset('/Images/logo-light.png') }}" alt="Logo" style="height: 40px;">
+                </a>
 
-        </a>
-  
-      <!-- Menu principal -->
-      <nav class="nav-menu">
-        <a href="/" class="nav-button">Accueil</a>
-  
-        <!-- Dropdown Les Équipes -->
-        <!-- Menu déroulant Les Équipes -->
-<div class="dropdown">
-    <button class="dropbtn">Les Équipes</button>
-    <div class="dropdown-content">
-        <h4>Équipes les plus suivies dans ton pays</h4>
-        <div class="dropdown-grid">
-            <a href="/psg"><img src="{{ asset('Images/psg.png') }}" alt="PSG"> PSG</a>
-            <a href="/realmadrid"><img src="{{ asset('Images/realmadrid.png') }}" alt="Real Madrid"> Real Madrid</a>
-            <a href="/om"><img src="{{ asset('Images/om.png') }}" alt="OM"> Olympique de Marseille</a>
-            <a href="/fcb"><img src="{{ asset('Images/fcb.png') }}" alt="FC Barcelone"> FC Barcelone</a>
-            <a href="/lyon"><img src="{{ asset('Images/lyon.png') }}" alt="Olympique Lyonnais"> Olympique Lyonnais</a>
-            <a href="/manchestercity"><img src="{{ asset('Images/manchestercity.png') }}" alt="Manchester City"> Manchester City</a>
-            <a href="/saintetienne"><img src="{{ asset('Images/saintetienne.svg') }}" alt="Saint-Étienne"> Saint-Étienne</a>
-            <a href="/nantes"><img src="{{ asset('Images/nantes.png') }}" alt="FC Nantes"> FC Nantes</a>
-            <a href="/rennes"><img src="{{ asset('Images/rennes.png') }}" alt="Stade Rennais"> Stade Rennais</a>
-            <a href="/rclens"><img src="{{ asset('Images/rclens.png') }}" alt="RC Lens"> RC Lens</a>
-        </div>
-    </div>
-</div>
-<!-- Dropdown Compétitions -->
-<div class="dropdown">
-    <button class="dropbtn">Compétitions</button>
-    <div class="dropdown-content">
-        <h4>Compétitions populaires</h4>
-        <div class="dropdown-grid">
-            <a href="euro2024.html"><img src="{{ asset('Images/euro2024.svg') }}" alt="EURO 2024"> EURO 2024</a>
-            <a href="ligue1.html"><img src="{{ asset('Images/ligue1.png') }}" alt="Ligue 1"> Ligue 1</a>
-            <a href="laliga.html"><img src="{{ asset('Images/laliga.png') }}" alt="La Liga"> La Liga</a>
-            <a href="premierleague.html"><img src="{{ asset('Images/premierleague.png') }}" alt="Premier League"> Premier League</a>
-            <a href="uefachampionsleague.html"><img src="{{ asset('Images/liguedeschampions.png') }}" alt="UEFA Champions League"> UEFA Champions League</a>
-            <a href="seriea.html"><img src="{{ asset('Images/serieA.png') }}" alt="Serie A"> Serie A</a>
-            <a href="bundesliga.html"><img src="{{ asset('Images/bundesliga.png') }}" alt="Bundesliga"> Bundesliga</a>
-            <a href="uefaeuropaleague.html"><img src="{{ asset('Images/europaleague.svg') }}" alt="UEFA Europa League"> UEFA Europa League</a>
-            <a href="coupedefrance.html"><img src="{{ asset('Images/coupedefrance.jpeg') }}" alt="Coupe de France"> Coupe de France</a>
-            <a href="ligaportugal.html"><img src="{{ asset('Images/ligaportugal.png') }}" alt="Liga Portugal"> Liga Portugal</a>
-            <a href="proleague.html"><img src="{{ asset('Images/proleague.avif') }}" alt="Pro League"> Pro League</a>
-            <a href="dfbpokal.html"><img src="{{ asset('Images/dfbpokal.png') }}" alt="DFB-Pokal"> DFB-Pokal</a>
-            <a href="amical.html"><img src="{{ asset('Images/matchamicaux.avif') }}" alt="Amicaux internationaux"> Amicaux internationaux</a>
-            <a href="national.html"><img src="{{ asset('Images/championnatnationale.avif') }}" alt="Championnat National"> Championnat National</a>
-        </div>
-        <div class="dropdown-link">
-            <a href="allcompetitions.html">Toutes les compétitions</a>
-        </div>
-    </div>
-</div>
-        <a href="/contact" class="nav-button">Contact</a>
-      </nav>
-     <div class="theme-toggle">
-  <input type="checkbox" id="darkmode-toggle" />
-  <label for="darkmode-toggle">
-     <!-- Toggle mode sombre/clair -->
-  <div class="theme-toggle">
-    <input type="checkbox" id="darkmode-toggle" />
-    <label for="darkmode-toggle">
-      <span class="material-icons sun">light_mode</span>
-      <span class="material-icons moon">dark_mode</span>
-    </label>
-  </div>
-  <div class="burger-menu">
-    <i class="fa fa-bars"></i>
-</div>
+                <!-- Bouton hamburger pour mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  </label>
-</div>
-          <!-- Barre verticale -->
-    <div class="separator"></div>
-    <!-- Coté droit de la barre de navigation -->
-<div class="nav-right">
-    <!-- Bouton de recherche -->
-    <a href="#" class="search-button" onclick="toggleSearchPopup()">
-        <i class="fa fa-search"></i>
-    </a>
-{% if app.user %}
-    <div class="dropdown-profil">
-        <button class="dropbtn-profil">
-            {% if app.user.profilePicture is not empty %}
-                <img src="{{ asset('uploads/profile_pictures/' ~ app.user.profilePicture) }}" alt="Photo de profil" class="nav-profile-img navbar-profile-img">
-            {% else %}
-                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar par défaut" class="nav-profile-img navbar-profile-img">
-            {% endif %}
-        </button>
+                <!-- Contenu de la navbar -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
 
-        <div class="dropdown-content-profil">
-            <a href="{{ path('user_profil') }}">Mon Compte</a>
+                        <!-- Dropdown Les Équipes -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Les Équipes
+                            </a>
+                            <div class="dropdown-menu">
+                                <h4 class="dropdown-header">Équipes les plus suivies dans ton pays</h4>
+                                <div class="dropdown-grid">
+                                    <a class="dropdown-item" href="/psg"><img src="{{ asset('Images/psg.png') }}" alt="PSG"> PSG</a>
+                                    <a class="dropdown-item" href="/realmadrid"><img src="{{ asset('Images/realmadrid.png') }}" alt="Real Madrid"> Real Madrid</a>
+                                    <a class="dropdown-item" href="/om"><img src="{{ asset('Images/om.png') }}" alt="OM"> Olympique de Marseille</a>
+                                    <a class="dropdown-item" href="/fcb"><img src="{{ asset('Images/fcb.png') }}" alt="FC Barcelone"> FC Barcelone</a>
+                                    <a class="dropdown-item" href="/lyon"><img src="{{ asset('Images/lyon.png') }}" alt="Olympique Lyonnais"> Olympique Lyonnais</a>
+                                    <a class="dropdown-item" href="/manchestercity"><img src="{{ asset('Images/manchestercity.png') }}" alt="Manchester City"> Manchester City</a>
+                                    <a class="dropdown-item" href="/saintetienne"><img src="{{ asset('Images/saintetienne.svg') }}" alt="Saint-Étienne"> Saint-Étienne</a>
+                                    <a class="dropdown-item" href="/nantes"><img src="{{ asset('Images/nantes.png') }}" alt="FC Nantes"> FC Nantes</a>
+                                    <a class="dropdown-item" href="/rennes"><img src="{{ asset('Images/rennes.png') }}" alt="Stade Rennais"> Stade Rennais</a>
+                                    <a class="dropdown-item" href="/rclens"><img src="{{ asset('Images/rclens.png') }}" alt="RC Lens"> RC Lens</a>
+                                </div>
+                            </div>
+                        </li>
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('user_index') }}">CRUD Utilisateurs</a>
-                <a href="{{ path('article_index') }}">CRUD Articles</a>
-                <a href="{{ path('admin_article_create') }}">CRUD Équipes</a>
-                <a href="{{ path('admin_article_create') }}">CRUD Compétitions</a>
-                <a href="{{ path('crud_joueurs_index') }}">CRUD Joueurs</a>
-            {% endif %}
+                        <!-- Dropdown Compétitions -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Compétitions
+                            </a>
+                            <div class="dropdown-menu">
+                                <h4 class="dropdown-header">Compétitions populaires</h4>
+                                <div class="dropdown-grid">
+                                    <a class="dropdown-item" href="euro2024.html"><img src="{{ asset('Images/euro2024.svg') }}" alt="EURO 2024"> EURO 2024</a>
+                                    <a class="dropdown-item" href="ligue1.html"><img src="{{ asset('Images/ligue1.png') }}" alt="Ligue 1"> Ligue 1</a>
+                                    <a class="dropdown-item" href="laliga.html"><img src="{{ asset('Images/laliga.png') }}" alt="La Liga"> La Liga</a>
+                                    <a class="dropdown-item" href="premierleague.html"><img src="{{ asset('Images/premierleague.png') }}" alt="Premier League"> Premier League</a>
+                                    <a class="dropdown-item" href="uefachampionsleague.html"><img src="{{ asset('Images/liguedeschampions.png') }}" alt="UEFA Champions League"> UEFA Champions League</a>
+                                    <a class="dropdown-item" href="seriea.html"><img src="{{ asset('Images/serieA.png') }}" alt="Serie A"> Serie A</a>
+                                    <a class="dropdown-item" href="bundesliga.html"><img src="{{ asset('Images/bundesliga.png') }}" alt="Bundesliga"> Bundesliga</a>
+                                    <a class="dropdown-item" href="uefaeuropaleague.html"><img src="{{ asset('Images/europaleague.svg') }}" alt="UEFA Europa League"> UEFA Europa League</a>
+                                    <a class="dropdown-item" href="coupedefrance.html"><img src="{{ asset('Images/coupedefrance.jpeg') }}" alt="Coupe de France"> Coupe de France</a>
+                                    <a class="dropdown-item" href="ligaportugal.html"><img src="{{ asset('Images/ligaportugal.png') }}" alt="Liga Portugal"> Liga Portugal</a>
+                                    <a class="dropdown-item" href="proleague.html"><img src="{{ asset('Images/proleague.avif') }}" alt="Pro League"> Pro League</a>
+                                    <a class="dropdown-item" href="dfbpokal.html"><img src="{{ asset('Images/dfbpokal.png') }}" alt="DFB-Pokal"> DFB-Pokal</a>
+                                    <a class="dropdown-item" href="amical.html"><img src="{{ asset('Images/matchamicaux.avif') }}" alt="Amicaux internationaux"> Amicaux internationaux</a>
+                                    <a class="dropdown-item" href="national.html"><img src="{{ asset('Images/championnatnationale.avif') }}" alt="Championnat National"> Championnat National</a>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="allcompetitions.html">Toutes les compétitions</a>
+                            </div>
+                        </li>
 
-            <a href="{{ path('app_logout') }}">Se déconnecter</a>
-        </div>
-    </div>
-{% else %}
-    <a href="{{ path('app_login') }}" class="auth-button">Se connecter</a>
-    <a href="{{ path('user_register') }}" class="signup-button">S'inscrire</a>
-{% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">Contact</a>
+                        </li>
+                    </ul>
 
-<!-- Pop-up de recherche -->
-<div id="search-popup" class="search-popup">
-    <div class="search-popup-content">
+                    <!-- Partie droite -->
+                    <div class="d-flex align-items-center">
+                        <!-- Bouton de recherche -->
+                        <a href="#" class="btn search-button me-2" onclick="toggleSearchPopup()">
+                            <i class="fa fa-search"></i>
+                        </a>
 
-        <!-- ✅ Formulaire de recherche -->
-        <form class="search-input">
-            <input
-                type="text"
-                name="search"
-                class="form-control"
-                placeholder="Rechercher un article, une équipe ou un joueur...">
-        </form>
-
-        <!-- ✅ Catégories -->
-        <div class="search-categories">
-            <button class="category-button active" data-category="all">Tous</button>
-            <button class="category-button" data-category="articles">Articles</button>
-            <button class="category-button" data-category="teams">Équipes</button>
-            <button class="category-button" data-category="players">Joueurs</button>
-        </div>
-
-        <!-- ✅ Suggestions -->
-        <div class="search-suggestions">
-            <h3>Suggestions de recherches</h3>
-            <ul>
-                <li>
-                    <a href="/ldc">
-                        <img src="{{ asset('Images/ldc.jpg') }}" alt="Ligue des Champions UEFA" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Ligue des Champions UEFA</strong>
-                            <span>🇪🇺 Europe</span>
+                        <!-- Toggle thème -->
+                        <div class="theme-toggle me-2">
+                            <input type="checkbox" id="darkmode-toggle" />
+                            <label for="darkmode-toggle" class="d-flex align-items-center">
+                                <span class="material-icons sun">light_mode</span>
+                                <span class="material-icons moon">dark_mode</span>
+                            </label>
                         </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/ligue1">
-                        <img src="{{ asset('Images/l1.jpg') }}" alt="Ligue 1 McDonald's" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Ligue 1 McDonald's</strong>
-                            <span>🇫🇷 France</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/coupeduroi">
-                        <img src="{{ asset('Images/cdr.webp') }}" alt="Coupe du Roi" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Coupe du Roi</strong>
-                            <span>🇪🇸 Espagne</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/laliga">
-                        <img src="{{ asset('Images/laliga.png') }}" alt="Liga" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Liga</strong>
-                            <span>🇪🇸 Espagne</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/realmadrid">
-                        <img src="{{ asset('Images/realmadridimg.png') }}" alt="Real Madrid" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Real Madrid</strong>
-                            <span>🇪🇸 Espagne</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/premierleague">
-                        <img src="{{ asset('Images/premierleague.png') }}" alt="Premier League" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Premier League</strong>
-                            <span>🏴 Angleterre</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/fcb">
-                        <img src="{{ asset('Images/fcb.png') }}" alt="Barcelone" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Barcelone</strong>
-                            <span>🇪🇸 Espagne</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/psg">
-                        <img src="{{ asset('Images/psg.png') }}" alt="PSG" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>PSG</strong>
-                            <span>🇫🇷 France</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/kylianmbappe">
-                        <img src="{{ asset('Images/mbappé.png') }}" alt="Kylian Mbappé" class="suggestion-icon">
-                        <div class="suggestion-text">
-                            <strong>Kylian Mbappé</strong>
-                            <span>Real Madrid CF - 26 ans - France</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div> 
-</header>
-        {% block body %}{% endblock %}
-    <!-- FOOTER -->
-<footer>
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3>LIENS RAPIDES</h3>
-            <ul>
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>MENTIONS LÉGALES</h3>
-            <ul>
-                <li><a href="/">Conditions d’utilisation</a></li>
-                <li><a href="/">Politique de confidentialité</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>SUIVEZ-NOUS</h3>
-            <a href="https://www.instagram.com"><img src="{{ asset('Images/Instagram_logo_2022.svg') }}" alt="Instagram"></a>
-            <a href="https://x.com"><img src="{{ asset('Images/x.avif') }}" alt="X"></a>
-            <a href="https://www.facebook.com"><img src="{{ asset('Images/facebook.png') }}" alt="Facebook"></a>
-            <a href="https://www.tiktok.com"><img src="{{ asset('Images/logotiktok.png') }}" alt="TikTok"></a>
-        </div>
-    </div>
-    <div class="copyright">
-        <p>© FootNews 2025</p>
-    </div>
-</footer>
 
-<script src="{{ asset('Javascript/dropdown.js') }}"></script>
-<script src="{{ asset('Javascript/menuburger.js') }}"></script>
-<script src="{{ asset('Javascript/recherche.js') }}"></script>
-</div>
+                        <!-- Profil utilisateur ou connexion/inscription -->
+                        {% if app.user %}
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% if app.user.profilePicture is not empty %}
+                                        <img src="{{ asset('uploads/profile_pictures/' ~ app.user.profilePicture) }}" alt="Photo de profil" class="nav-profile-img navbar-profile-img rounded-circle" style="width: 40px; height: 40px;">
+                                    {% else %}
+                                        <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar par défaut" class="nav-profile-img navbar-profile-img rounded-circle" style="width: 40px; height: 40px;">
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ path('user_profil') }}">Mon Compte</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a class="dropdown-item" href="{{ path('user_index') }}">CRUD Utilisateurs</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('article_index') }}">CRUD Articles</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_equipe_index') }}">CRUD Équipes</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_article_create') }}">CRUD Compétitions</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('crud_joueurs_index') }}">CRUD Joueurs</a></li>
+                                    {% endif %}
+                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="btn auth-button me-2">Se connecter</a>
+                            <a href="{{ path('user_register') }}" class="btn signup-button">S'inscrire</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Pop-up de recherche (inchangé) -->
+        <div id="search-popup" class="search-popup">
+            <div class="search-popup-content">
+                <form class="search-input">
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher un article, une équipe ou un joueur...">
+                </form>
+                <div class="search-categories">
+                    <button class="category-button active" data-category="all">Tous</button>
+                    <button class="category-button" data-category="articles">Articles</button>
+                    <button class="category-button" data-category="teams">Équipes</button>
+                    <button class="category-button" data-category="players">Joueurs</button>
+                </div>
+                <div class="search-suggestions">
+                    <h3>Suggestions de recherches</h3>
+                    <ul>
+                        <li><a href="/ldc"><img src="{{ asset('Images/ldc.jpg') }}" alt="Ligue des Champions UEFA" class="suggestion-icon"> <div class="suggestion-text"><strong>Ligue des Champions UEFA</strong><span>🇪🇺 Europe</span></div></a></li>
+                        <li><a href="/ligue1"><img src="{{ asset('Images/l1.jpg') }}" alt="Ligue 1 McDonald's" class="suggestion-icon"> <div class="suggestion-text"><strong>Ligue 1 McDonald's</strong><span>🇫🇷 France</span></div></a></li>
+                        <li><a href="/coupeduroi"><img src="{{ asset('Images/cdr.webp') }}" alt="Coupe du Roi" class="suggestion-icon"> <div class="suggestion-text"><strong>Coupe du Roi</strong><span>🇪🇸 Espagne</span></div></a></li>
+                        <li><a href="/laliga"><img src="{{ asset('Images/laliga.png') }}" alt="Liga" class="suggestion-icon"> <div class="suggestion-text"><strong>Liga</strong><span>🇪🇸 Espagne</span></div></a></li>
+                        <li><a href="/realmadrid"><img src="{{ asset('Images/realmadridimg.png') }}" alt="Real Madrid" class="suggestion-icon"> <div class="suggestion-text"><strong>Real Madrid</strong><span>🇪🇸 Espagne</span></div></a></li>
+                        <li><a href="/premierleague"><img src="{{ asset('Images/premierleague.png') }}" alt="Premier League" class="suggestion-icon"> <div class="suggestion-text"><strong>Premier League</strong><span>🏴 Angleterre</span></div></a></li>
+                        <li><a href="/fcb"><img src="{{ asset('Images/fcb.png') }}" alt="Barcelone" class="suggestion-icon"> <div class="suggestion-text"><strong>Barcelone</strong><span>🇪🇸 Espagne</span></div></a></li>
+                        <li><a href="/psg"><img src="{{ asset('Images/psg.png') }}" alt="PSG" class="suggestion-icon"> <div class="suggestion-text"><strong>PSG</strong><span>🇫🇷 France</span></div></a></li>
+                        <li><a href="/kylianmbappe"><img src="{{ asset('Images/mbappé.png') }}" alt="Kylian Mbappé" class="suggestion-icon"> <div class="suggestion-text"><strong>Kylian Mbappé</strong><span>Real Madrid CF - 26 ans - France</span></div></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block body %}{% endblock %}
+
+    <!-- Footer (inchangé) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>LIENS RAPIDES</h3>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>MENTIONS LÉGALES</h3>
+                <ul>
+                    <li><a href="/conditions">Conditions d’utilisation</a></li>
+                    <li><a href="/politiqueconfidentialite">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>SUIVEZ-NOUS</h3>
+                <a href="https://www.instagram.com"><img src="{{ asset('Images/Instagram_logo_2022.svg') }}" alt="Instagram"></a>
+                <a href="https://x.com"><img src="{{ asset('Images/x.avif') }}" alt="X"></a>
+                <a href="https://www.facebook.com"><img src="{{ asset('Images/facebook.png') }}" alt="Facebook"></a>
+                <a href="https://www.tiktok.com"><img src="{{ asset('Images/logotiktok.png') }}" alt="TikTok"></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© FootNews 2025</p>
+        </div>
+    </footer>
+
+    <!-- Ajout du JS Bootstrap (nécessaire pour les dropdowns et le collapse) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ asset('Javascript/dropdown.js') }}"></script>
+    <script src="{{ asset('Javascript/theme.js') }}"></script>
+    <script src="{{ asset('Javascript/menuburger.js') }}"></script>
+    <script src="{{ asset('Javascript/recherche.js') }}"></script>
+</body>
 </html>

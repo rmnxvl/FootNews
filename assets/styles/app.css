@@ -1,3 +1,4 @@
+/* Styles par défaut */
 * {
     margin: 0;
     padding: 0;
@@ -7,190 +8,130 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; 
+    height: 100%;
     overflow-x: hidden;
 }
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff; /* Fond clair par défaut */
     font-family: 'Host Grotesk', sans-serif;
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
+    color: #272727; /* Texte sombre par défaut */
 }
 
-/* Barre de navigation */
-
-.img-home {
-    height: 80px;
-    width: 100%;
-}
-
-
+/* Navbar Bootstrap */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #ffffff;
-    padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width: 100%;
     max-width: 1500px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
+    padding: 10px 20px;
 }
 
-/* Logo */
-.logosite img {
-    height: 50px;
-    flex-shrink: 0;
+.navbar-brand img {
+    height: 40px;
 }
 
-/* Menu principal */
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-grow: 1;
-    justify-content: center;
-}
-
-/* Boutons de navigation */
-.nav-button,
-.dropbtn {
-    text-decoration: none;
-    color: rgb(39, 39, 39);
+.nav-link {
+    color: #272727 !important; /* Texte noir en mode clair */
     font-size: 16px;
-    padding: 8px 12px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.3s ease, font-weight 0.3s ease, background-color 0.3s ease;
-    }
-
-
-/* Dropdown */
-.dropdown {
-    position: relative;
+    padding: 8px 12px !important;
+    transition: color 0.3s ease;
 }
 
-/* Menu déroulant caché par défaut */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
+.nav-link:hover {
+    color: #555555 !important;
+}
+
+/* Menu burger (toggler) */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(39, 39, 39, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Dropdown Bootstrap */
+.dropdown-menu {
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    z-index: 1000;
     width: 400px;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: flex-start;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none; /* Empêche les interactions lorsque le menu est caché */
+    border: none;
 }
 
-/* Apparition du menu lorsqu'il est actif */
-.dropdown-content.active {
-    display: flex;
-    opacity: 1;
-    pointer-events: auto; /* Permet les interactions avec le menu */
-}
-
-/* Disparition au survol en dehors du menu */
-.dropdown-content:hover {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-/* Liens du menu déroulant */
-.dropdown-content a {
+.dropdown-item {
     display: flex;
     align-items: center;
-    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    color: black;
+    color: #000000 !important; /* Texte noir en mode clair */
     gap: 10px;
     padding: 5px 10px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-.dropdown-content a:hover {
-    background-color: #f5f5f5;
+.dropdown-item:hover {
+    background-color: #f5f5f5 !important;
 }
 
-/* Icônes des équipes */
-.dropdown-content img {
+.dropdown-item img {
     height: 24px;
     width: 24px;
     border-radius: 50%;
 }
 
-.nav-right {
+.dropdown-grid {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
-    flex-shrink: 0;
 }
 
+.dropdown-header {
+    color: #4a4a4a !important; /* Titres des dropdowns en gris foncé */
+}
 
-.separator {
-    width: 2px; /* Épaisseur de la barre */
-    height: 40px; /* Hauteur de la barre */
-    background-color: #d8d8d8; /* Couleur grise */
-    margin: 0 10px; /* Espacement horizontal entre les éléments */
-    align-self: center; /* Centre verticalement */
-    }
-
-
-/* Bouton de recherche */
+/* Boutons de la navbar */
 .search-button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: #f9f9f9; /* Couleur de fond */
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 50%;
     text-decoration: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
 .search-button i {
-    color: #000; /* Couleur de l'icône */
-    font-size: 20px; /* Taille de l'icône */
+    color: #000000; /* Icône noire en mode clair */
+    font-size: 20px;
     transition: color 0.3s ease;
 }
 
 .search-button:hover {
-    background-color: #000000; /* Couleur de fond au survol */
-    transform: scale(1.1); /* Légère mise en avant */
+    background-color: #000000;
+    transform: scale(1.1);
 }
 
 .search-button:hover i {
-    color: #fff; /* Couleur de l'icône au survol */
+    color: #ffffff;
 }
 
-
-
-
-/* Bouton Se connecter */
 .auth-button {
-    color: black;
-    border: 2px solid black; /* ✅ Bord noir */
+    color: #000000; /* Texte noir en mode clair */
+    border: 2px solid #000000;
     border-radius: 25px;
     padding: 9px 20px;
     font-weight: 600;
@@ -198,12 +139,9 @@ body {
     transition: all 0.4s ease;
 }
 
-
-
-/* Bouton S'inscrire */
 .signup-button {
-    background: black;
-    color: white;
+    background: #000000;
+    color: #ffffff; /* Texte blanc sur fond noir */
     border-radius: 25px;
     padding: 10px 25px;
     font-weight: 600;
@@ -211,443 +149,209 @@ body {
     transition: all 0.4s ease;
 }
 
-
-/* Espacement entre les sections */
 header {
     margin-bottom: 70px;
 }
 
-.auth-button, .signup-button {
-    padding: 10px 25px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 🌟 Pop-up Principal */
+/* Popup de recherche */
 .search-popup {
-    display: none; /* Masqué par défaut */
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
-    width: 30%; /* Largeur du pop-up */
-    max-width: 400px; /* Largeur maximale */
-    height: 100vh; /* Pleine hauteur */
-    background-color: #ffffff; /* Fond blanc */
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2); /* Ombre légère */
-    z-index: 1000; /* Toujours au-dessus */
-    padding: 20px; /* Espacement interne */
-    overflow-y: auto; /* Défilement vertical si nécessaire */
-    border-radius: 10px 0 0 10px; /* Coins arrondis côté gauche */
-    transform: translateX(100%); /* Position hors de l'écran par défaut */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Animation fluide */
-    opacity: 0; /* Transparent par défaut */
+    width: 30%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+    border-radius: 10px 0 0 10px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
 }
 
-/* 🌟 Lorsqu'il est actif */
 .search-popup.active {
-    display: block; /* Visible */
-    transform: translateX(0); /* Affichage dans l'écran */
-    opacity: 1; /* Pleine opacité */
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
 }
 
-
-/* 🌟 Contenu du Pop-up */
 .search-popup-content {
     display: flex;
-    flex-direction: column; /* Organisation en colonne */
-    gap: 20px; /* Espacement entre suggestions et la barre de recherche */
-}
-
-/* 🌟 Barre de Recherche */
-.search-input {
-    border-radius: 20px;
-    display: flex;
-    align-items: center; /* Alignement vertical */
-    gap: 10px; /* Espacement entre l'input et le bouton */
+    flex-direction: column;
+    gap: 20px;
 }
 
 .search-input .form-control {
-    flex: 1; /* L'input occupe tout l'espace disponible */
-    padding: 12px 15px; /* Espacement interne */
-    border: 1px solid #ddd; /* Bordure grise claire */
-    border-radius: 5px; /* Coins arrondis */
-    font-size: 14px; /* Texte lisible */
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #ffffff; /* Fond blanc en mode clair */
+    color: #333333; /* Texte sombre en mode clair */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .search-input .form-control:focus {
-    border-color: #5a7fff; /* Bordure bleue au focus */
-    box-shadow: 0 0 5px rgba(90, 127, 255, 0.5); /* Effet lumineux */
-    outline: none; /* Supprime le contour par défaut */
+    border-color: #5a7fff;
+    box-shadow: 0 0 5px rgba(90, 127, 255, 0.5);
+    outline: none;
 }
 
-/* 🌟 Catégories */
 .search-categories {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Les boutons passent à la ligne si nécessaire */
-    gap: 10px; /* Espacement entre les boutons */
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .category-button {
     padding: 10px 15px;
-    background-color: #f9f9f9; /* Fond clair */
-    color: #333; /* Texte sombre */
-    border: 1px solid #ddd; /* Bordure claire */
-    border-radius: 20px; /* Coins très arrondis */
+    background-color: #f9f9f9;
+    color: #333333; /* Texte sombre en mode clair */
+    border: 1px solid #ddd;
+    border-radius: 20px;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .category-button:hover {
-    background-color: #000000; /* Bleu principal */
-    color: #ffffff; /* Texte blanc */
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .category-button.active {
-    background-color: #000000; /* Fond bleu actif */
-    color: #ffffff; /* Texte blanc */
+    background-color: #000000;
+    color: #ffffff;
 }
 
-/* 🌟 Suggestions */
 .search-suggestions h3 {
     font-size: 16px;
-    color: #4a4a4a; /* Gris foncé */
+    color: #4a4a4a; /* Gris foncé en mode clair */
     margin-bottom: 15px;
     font-weight: bold;
-}
-
-
-.search-suggestions li {
-    display: flex; /* Aligne les éléments en ligne */
-    align-items: center; /* Centre verticalement */
-    padding: 0px 10px;
-    border-bottom: 1px solid #e0e0e0; /* Ligne de séparation */
-    transition: background-color 0.3s ease;
-}
-
-.search-suggestions li:hover {
-    background-color: #e2e2e2; /* Fond plus clair au survol */
-}
-
-.search-suggestions li a {
-    display: flex; /* Aligne les éléments horizontalement */
-    align-items: center; /* Centre verticalement */
-    text-decoration: none; /* Supprime le soulignement */
-    color: #333; /* Texte sombre */
-    gap: 15px; /* Espacement entre l'image et le texte */
-    width: 100%; /* S'adapte à la largeur */
-    padding: 10px 0; /* Espacement vertical interne */
-}
-
-.suggestion-icon {
-    width: 30px; /* Taille de l'icône */
-    height: 30px;
-    object-fit: contain; /* Garde les proportions */
-    border-radius: 5px; /* Coins légèrement arrondis */
-}
-
-/* Texte de suggestion */
-.suggestion-text {
-    display: flex;
-    flex-direction: column; /* Texte principal et sous-texte empilés */
-}
-
-.suggestion-text strong {
-    font-size: 14px; /* Texte principal légèrement plus grand */
-    color: #333; /* Couleur sombre */
-}
-
-.suggestion-text span {
-    font-size: 12px; /* Texte secondaire plus petit */
-    color: #666; /* Couleur gris clair */
-}
-
-
-body.no-scroll {
-    overflow: hidden;
-}
-
-
-/* Recherche dynamique  */
-
-.search-suggestions ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .search-suggestions li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
-    cursor: pointer;
+    padding: 0 10px;
+    border-bottom: 1px solid #e0e0e0;
     transition: background-color 0.3s ease;
 }
 
 .search-suggestions li:hover {
-    background-color: #f5f5f5;
+    background-color: #e2e2e2;
 }
 
-.search-suggestions li img.result-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.search-suggestions li strong {
-    font-size: 16px;
-    color: #333;
-}
-
-.search-suggestions li p {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-}
-
-
-
-
-/* Masquer le menu burger par défaut */
-.burger-menu {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-
-/* Style du bouton dropdown pour le profil */
-.dropbtn-profil {
-    color: #333;
-    font-size: 30px;
-    padding: 10px 25px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-
-/* Conteneur du dropdown pour le profil */
-.dropdown-profil {
-    position: relative;
-    display: inline-block;
-}
-
-/* Contenu  du dropdown par défaut */
-.dropdown-content-profil {
-    display: none;
-    position: absolute;
-    right: 0;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1;
-}
-
-
-.dropdown-content-profil a:hover {
-    background-color: #f0f0f0; /* Gris clair au survol */
-    }
-
-/* Lien dans le dropdown du profil */
-.dropdown-content-profil a {
-    color: #ffffff;
-    padding: 10px 15px;
+.search-suggestions li a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
+    color: #333333; /* Texte sombre en mode clair */
+    gap: 15px;
+    width: 100%;
+    padding: 10px 0;
 }
 
-/* Affichage du menu déroulant au survol */
-.dropdown-profil:hover .dropdown-content-profil {
-    display: block;
+.suggestion-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
+.suggestion-text {
+    display: flex;
+    flex-direction: column;
+}
 
-/* Image de profil dans la barre de navigation */
+.suggestion-text strong {
+    font-size: 14px;
+    color: #333333; /* Texte sombre en mode clair */
+}
+
+.suggestion-text span {
+    font-size: 12px;
+    color: #666666; /* Gris moyen en mode clair */
+}
+
+/* Profil utilisateur */
 .navbar-profile-img {
     width: 40px;
     height: 40px;
-    background-color: transparent !important;  /* ✅ Supprime le fond */
     border-radius: 50%;
     object-fit: cover;
-    cursor: pointer;
 }
 
-.dropbtn-profil {
-    background-color: transparent !important;
-}
-
-/* Dropdown menu pour la photo de profil */
-.dropdown-profil {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content-profil {
-    display: none;
-    position: absolute;
-    right: 0;
+.dropdown-menu-end {
     background-color: #ffffff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    z-index: 1;
 }
 
-.dropdown-content-profil a {
-    color: #333;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.dropdown-menu-end .dropdown-item {
+    color: #000000 !important; /* Texte noir en mode clair */
 }
 
-.dropdown-profil:hover .dropdown-content-profil {
-    display: block;
-}
-
-
-/* Menu Burger */
-.burger-menu {
+/* Toggle thème */
+.theme-toggle input {
     display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
 }
 
-
-/* TOGGLE */ 
-
-  /* Masquer la checkbox */
-  .theme-toggle input {
-    display: none;
-  }
-  
-  /* Conteneur du toggle */
-  .theme-toggle label {
-    width: 80px; /* Taille du toggle */
+.theme-toggle label {
+    width: 80px;
     height: 40px;
     position: relative;
     display: block;
-    background: #ebebeb; /* Fond clair par défaut */
-    border-radius: 20px; /* Bordures arrondies */
+    background: #ebebeb;
+    border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  /* Soleil et lune */
-  .theme-toggle .sun,
-  .theme-toggle .moon {
+}
+
+.theme-toggle .sun,
+.theme-toggle .moon {
     position: absolute;
     width: 20px;
     height: 20px;
-    top: 7px; /* Centré verticalement */
+    top: 7px;
     transition: opacity 0.3s ease, color 0.3s ease;
-  }
-  
-  /* Soleil */
-  .theme-toggle .sun {
+}
+
+.theme-toggle .sun {
     left: 10px;
-    color: #ffc107; /* Couleur du soleil */
-    opacity: 1; /* Soleil visible par défaut */
-  }
-  
-  /* Lune */
-  .theme-toggle .moon {
+    color: #ffc107;
+    opacity: 1;
+}
+
+.theme-toggle .moon {
     right: 10px;
-    color: #999999; /* Couleur de la lune */
-    opacity: 0; /* Lune cachée par défaut */
-  }
-  
-  /* Si le toggle est activé */
-  .theme-toggle input:checked + label {
-    background: #242424; /* Fond sombre */
-  }
-  
-  .theme-toggle input:checked + label .sun {
-    opacity: 0; /* Cache le soleil */
-  }
-  
-  .theme-toggle input:checked + label .moon {
-    opacity: 1; /* Affiche la lune */
-  }
+    color: #999999;
+    opacity: 0;
+}
 
+.theme-toggle input:checked + label {
+    background: #242424;
+}
 
+.theme-toggle input:checked + label .sun {
+    opacity: 0;
+}
 
+.theme-toggle input:checked + label .moon {
+    opacity: 1;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* FOOTER */
+/* Footer */
 footer {
     padding: 20px;
     text-align: center;
+    background-color: #ffffff; /* Fond blanc en mode clair */
 }
 
 .footer-container {
@@ -663,6 +367,7 @@ footer {
 
 .footer-section h3 {
     margin-bottom: 10px;
+    color: #000000; /* Noir en mode clair */
 }
 
 .footer-section ul {
@@ -672,7 +377,7 @@ footer {
 
 .footer-section ul li a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: #000000; /* Noir en mode clair */
     display: block;
     padding: 5px 0;
 }
@@ -692,333 +397,172 @@ footer {
 }
 
 .copyright p {
-    color: rgb(0, 0, 0);
+    color: #000000; /* Noir en mode clair */
     margin: auto;
     text-align: center;
-    display: flex;
-    justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* NAVBAR MODE SOMBRE */
+/* Mode sombre */
+body.dark-mode {
+    background-color: #000000; /* Fond noir global */
+    color: #ffffff; /* Texte blanc par défaut en mode sombre */
+}
 
 body.dark-mode .navbar {
-    background-color: #000000; /* Fond noir */
-    color: #ffffff; /* Texte blanc */
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Ombre légère blanche */
+    background-color: #000000 !important;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-
-
-body.dark-mode a.nav-button:hover, 
-body.dark-mode button.dropbtn:hover {
-    color: rgb(200, 200, 200);
+body.dark-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-
-body.dark-mode .nav-button,
-body.dark-mode .dropbtn,
-body.dark-mode .auth-button,
-body.dark-mode .signup-button {
-    color: #ffffff; /* Boutons en blanc */
+body.dark-mode .nav-link {
+    color: #ffffff !important; /* Texte blanc en mode sombre */
 }
 
-
-
-
-body.dark-mode .signup-button {
-    background-color: #ffffff; /* Fond blanc */
-    color: #000000; /* Texte noir */
-    border: 2px solid #ffffff; /* Bordure blanche */
-    transition: background-color 0.3s ease, color 0.3s ease;
+body.dark-mode .nav-link:hover {
+    color: #cccccc !important;
 }
 
-body.dark-mode .signup-button:hover {
-    background-color: #e6e6e6; /* Fond légèrement gris clair au survol */
-    color: #000000; /* Texte noir */
+body.dark-mode .dropdown-menu {
+    background-color: #000000;
+    border: 1px solid #555555;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dropdown-item {
+    color: #ffffff !important; /* Texte blanc en mode sombre */
+}
+
+body.dark-mode .dropdown-item:hover {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .dropdown-header {
+    color: #ffffff !important; /* Titres blancs en mode sombre */
+}
+
+body.dark-mode .dropdown-divider {
+    border-top: 1px solid #555555;
+}
+
+body.dark-mode .search-button {
+    background-color: #333333;
+    border: 1px solid #555555;
+}
+
+body.dark-mode .search-button i {
+    color: #ffffff; /* Icône blanche en mode sombre */
+}
+
+body.dark-mode .search-button:hover {
+    background-color: #ffffff;
+}
+
+body.dark-mode .search-button:hover i {
+    color: #000000;
 }
 
 body.dark-mode .auth-button {
-    background-color: #000000; /* Fond noir */
-    color: #ffffff; /* Texte blanc */
-    border: 2px solid #ffffff; /* Bordure blanche */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #ffffff; /* Texte blanc en mode sombre */
+    border: 2px solid #ffffff;
+    background-color: #000000;
 }
 
 body.dark-mode .auth-button:hover {
-    background-color: #333333; /* Fond gris foncé au survol */
-    color: #ffffff; /* Conserver le texte blanc */
+    background-color: #333333;
 }
 
+body.dark-mode .signup-button {
+    background-color: #ffffff;
+    color: #000000; /* Texte noir sur fond blanc */
+    border: 2px solid #ffffff;
+}
 
+body.dark-mode .signup-button:hover {
+    background-color: #e6e6e6;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Menu déroulant sombre */
-body.dark-mode .dropdown-content-profil {
+body.dark-mode .search-popup {
     background-color: #000000;
-    color: #ffffff; 
-    border: 2px solid #444444; /* Ajout d'une bordure (facultatif) */
-    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2); /* Ombre blanche douce */
 }
 
-/* Lien dans le dropdown */
-body.dark-mode .dropdown-content-profil a {
-    color: #ffffff !important; /* Forcer les liens en blanc */
-    padding: 10px 15px; /* Espacement interne */
-    text-decoration: none; /* Pas de soulignement */
-    display: block; /* Liens en blocs */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Animation douce */
+body.dark-mode .search-input .form-control {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Texte blanc en mode sombre */
+    border: 1px solid #444444;
 }
 
-/* Hover sur les liens */
-body.dark-mode .dropdown-content-profil a:hover {
-    background-color: #333333 !important; /* Gris foncé au survol */
-    color: #ffffff !important; /* Conserver le texte blanc */
+body.dark-mode .category-button {
+    background-color: #5a7fff;
+    color: #ffffff; /* Texte blanc en mode sombre */
+    border: 1px solid #444444;
 }
 
-/* Optionnel : bordure autour des images de profil dans le menu déroulant */
-body.dark-mode .dropdown-content-profil img {
-    border: 2px solid #ffffff; /* Bordure blanche autour des images */
+body.dark-mode .category-button:hover {
+    background-color: #4867cc;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ⚡ Dropdown sombre : mode dark-mode */
-body.dark-mode .dropdown-content {
-    background-color: #000000; /* Fond gris foncé */
-    color: #ffffff; /* Texte blanc */
-    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.1); /* Ombre blanche douce */
-    border: 1px solid #555555; /* Bordure gris foncé */
+body.dark-mode .category-button.active {
+    background-color: #4867cc;
 }
 
-/* Liens dans le dropdown sombre */
-body.dark-mode .dropdown-content a {
-    color: #ffffff; /* Texte blanc */
-    text-decoration: none; /* Pas de soulignement */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Animation douce */
+body.dark-mode .search-suggestions h3 {
+    color: #ffffff; /* Blanc en mode sombre */
 }
 
-/* Survol des liens dans le dropdown sombre */
-body.dark-mode .dropdown-content a:hover {
-    background-color: #d9d9d9; /* Blanc cassé au survol */
-    color: #000000; /* Texte noir au survol */
+body.dark-mode .search-suggestions li a {
+    color: #ffffff; /* Texte blanc en mode sombre */
 }
 
+body.dark-mode .search-suggestions li {
+    border-bottom: 1px solid #444444;
+}
 
+body.dark-mode .search-suggestions li:hover {
+    background-color: #333333;
+}
 
+body.dark-mode .suggestion-text strong {
+    color: #ffffff; /* Blanc en mode sombre */
+}
 
+body.dark-mode .suggestion-text span {
+    color: #cccccc; /* Gris clair en mode sombre */
+}
 
+body.dark-mode .dropdown-menu-end {
+    background-color: #000000;
+    border: 1px solid #555555;
+}
 
+body.dark-mode .dropdown-menu-end .dropdown-item {
+    color: #ffffff !important; /* Texte blanc en mode sombre */
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* FOOTER SOMBRE  */
-
+body.dark-mode .dropdown-menu-end .dropdown-item:hover {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
 
 body.dark-mode footer {
-    background-color: #161616; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
+    background-color: #161616;
 }
 
-body.dark-mode footer a {
-    color: #ffffff; /* Liens blancs */
+body.dark-mode .footer-section h3 {
+    color: #ffffff; /* Blanc en mode sombre */
 }
 
-body.dark-mode footer a:hover {
-    color: #cccccc; /* Liens gris clair au survol */
+body.dark-mode .footer-section ul li a {
+    color: #ffffff; /* Blanc en mode sombre */
+}
+
+body.dark-mode .footer-section ul li a:hover {
+    color: #cccccc;
 }
 
 body.dark-mode .copyright p {
-    color: #ffffff; /* Texte blanc dans le copyright */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Par défaut, la navigation est visible sur grand écran */
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Sur mobile, cacher la navigation par défaut */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        z-index: 1000;
-    }
-
-    /* Afficher le menu burger */
-    .burger-menu {
-        display: block;
-        cursor: pointer;
-        font-size: 24px;
-    }
-
-    /* Quand la classe "active" est ajoutée, afficher le menu */
-    .nav-menu.active {
-        display: flex;
-    }
+    color: #ffffff; /* Blanc en mode sombre */
 }

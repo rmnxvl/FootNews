@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ equipe.nom }} - Détails{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-4">{{ equipe.nom }}</h1>
+        
+        {% if equipe.logo %}
+            <img src="{{ equipe.logo }}" alt="Logo de {{ equipe.nom }}" class="img-fluid" style="max-width: 200px;">
+        {% endif %}
+        
+        <p><strong>Pays :</strong> {{ equipe.pays ?: 'Non renseigné' }}</p>
+
+        <a href="{{ path('equipe_index') }}" class="btn btn-primary">Retour à la liste des équipes</a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('equipe_edit', { id: equipe.id }) }}" class="btn btn-warning">Modifier</a>
+            <form action="{{ path('equipe_delete', { id: equipe.id }) }}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cette équipe ?');">Supprimer</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

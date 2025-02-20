@@ -37,4 +37,17 @@ class ArticleRepository extends ServiceEntityRepository
                   ->getQuery()
                   ->getResult();
     }
+
+    /**
+ * Récupère tous les articles triés par date de création décroissante.
+ *
+ * @return Article[]
+ */
+public function findAllOrderedByDateDesc(): array
+{
+    return $this->createQueryBuilder('a')
+        ->orderBy('a.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
 }

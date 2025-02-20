@@ -3,7 +3,7 @@
 {% block title %} | FootNews{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/accueil.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/user-list.css') }}">
 {% endblock %}
 {% block body %}
 <div class="container mt-5">
@@ -11,14 +11,12 @@
 
     {# Bouton pour voir la liste des articles #}
     <div class="mb-3">
-        <a href="{{ path('article_index') }}" class="btn btn-success">Voir la liste des articles</a>
     </div>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
                 <th>Pseudo</th>
                 <th>Email</th>
                 <th>Rôles</th>

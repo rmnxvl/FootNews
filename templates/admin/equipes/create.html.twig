@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Créer une nouvelle équipe</h1>
+
+    <form method="post" action="{{ path('admin_equipe_create') }}" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom de l'équipe</label>
+            <input type="text" id="nom" name="nom" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="pays" class="form-label">Pays</label>
+            <input type="text" id="pays" name="pays" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="logo" class="form-label">Logo de l'équipe</label>
+            <input type="file" id="logo" name="logo" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">Créer</button>
+        <a href="{{ path('admin_equipe_index') }}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}

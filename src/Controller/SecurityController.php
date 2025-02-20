@@ -11,6 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -25,9 +26,15 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        // Vérifier si l'erreur est une instance de AuthenticationException
+        $errorMessage = null;
+        if ($error !== null) {
+            $errorMessage = 'Les identifiants rentrés sont incorrects.';
+        }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
-            'error' => $error,
+            'error' => $errorMessage, // Message d'erreur personnalisé
         ]);
     }
 
@@ -50,7 +57,8 @@ class SecurityController extends AbstractController
     public function register(
         Request $request,
         EntityManagerInterface $em,
-        UserPasswordHasherInterface $passwordHasher
+        UserPasswordHasherInterface $passwordHasher,
+        ValidatorInterface $validator
     ): Response {
         $error = null;
 
@@ -61,7 +69,8 @@ class SecurityController extends AbstractController
             $confirmPassword = $request->request->get('confirm_password');
             $agreeTerms = $request->request->get('agree_terms');
 
-            if (empty($username) || empty($email) || empty($password)) {
+            // Vérification des champs obligatoires
+            if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
                 $error = 'Tous les champs sont obligatoires.';
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $error = 'Adresse e-mail invalide.';
@@ -70,6 +79,7 @@ class SecurityController extends AbstractController
             } elseif (!$agreeTerms) {
                 $error = 'Vous devez accepter les conditions d\'utilisation.';
             } else {
+                // Vérifier si l'email ou le username existent déjà
                 $existingUsername = $em->getRepository(User::class)->findOneBy(['username' => $username]);
                 $existingEmail = $em->getRepository(User::class)->findOneBy(['email' => $email]);
 
@@ -78,19 +88,29 @@ class SecurityController extends AbstractController
                 } elseif ($existingEmail) {
                     $error = 'Cet email est déjà utilisé.';
                 } else {
+                    // Création de l'utilisateur et validation des contraintes
                     $user = new User();
                     $user->setUsername($username);
                     $user->setEmail($email);
-                    $hashedPassword = $passwordHasher->hashPassword($user, $password);
-                    $user->setPassword($hashedPassword);
-                    $user->setRoles(['ROLE_USER']);
+                    $user->setPassword($password);
 
-                    $em->persist($user);
-                    $em->flush();
+                    // Validation des contraintes du mot de passe
+                    $errors = $validator->validateProperty($user, 'password');
+                    if (count($errors) > 0) {
+                        $error = $errors[0]->getMessage(); // Récupère le premier message d'erreur
+                    } else {
+                        // Hashage sécurisé du mot de passe avant stockage
+                        $hashedPassword = $passwordHasher->hashPassword($user, $password);
+                        $user->setPassword($hashedPassword);
+                        $user->setRoles(['ROLE_USER']);
 
-                    $this->addFlash('success', 'Votre compte a été créé avec succès !');
+                        $em->persist($user);
+                        $em->flush();
 
-                    return $this->redirectToRoute('app_login');
+                        $this->addFlash('success', 'Votre compte a été créé avec succès !');
+
+                        return $this->redirectToRoute('app_login');
+                    }
                 }
             }
         }

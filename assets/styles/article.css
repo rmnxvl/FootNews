@@ -1,118 +1,233 @@
-.container {
-    max-width: 1500px;
-    background: white;
+.article-wrapper {
+    max-width: 100%;
+    margin: auto;
     padding: 20px;
-    margin: 40px auto;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
-/* Titre de l'article */
-h1 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
+.article-header {
+    position: relative;
+    text-align: left;
     margin-bottom: 20px;
 }
 
-/* Contenu de l'article */
-p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #444;
+.article-image-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-/* Commentaires */
-h3 {
-    margin-top: 30px;
-    color: #222;
-}
-
-.list-group {
-    padding: 0;
-}
-
-.list-group-item {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
+.article-image {
+    display: block;
+    width: 100%;
+    height: auto;
     border-radius: 5px;
 }
 
-.list-group-item p {
-    margin: 5px 0;
+.article-title-overlay {
+    position: absolute;
+    bottom: 20px; /* Ajustez cette valeur selon vos besoins */
+    left: 20px; /* Ajustez cette valeur selon vos besoins */
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
 }
 
-.text-muted {
-    font-size: 14px;
-    color: #777;
+.article-title {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
 }
 
-/* Formulaire d'ajout de commentaire */
-form {
+.article-content {
+    font-size: 18px;
+    line-height: 1.6;
     margin-top: 20px;
 }
 
-.form-label {
-    font-weight: bold;
+/* Conteneur principal des commentaires */
+.comment-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la section */
+.comment-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
     color: #333;
 }
 
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Liste des commentaires */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style individuel pour chaque commentaire */
+.comment-item {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Avatar du commentaire */
+.comment-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+/* Contenu du commentaire */
+.comment-info {
+    flex-grow: 1;
+}
+
+/* Nom de l'utilisateur */
+.comment-author {
+    font-weight: bold;
+    color: #007BFF;
     font-size: 14px;
 }
 
-button {
-    padding: 10px 15px;
-    font-size: 16px;
+/* Date du commentaire */
+.comment-date {
+    font-size: 12px;
+    color: #777;
+    margin-left: 10px;
+}
+
+/* Texte du commentaire */
+.comment-text {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Formulaire de commentaire */
+.comment-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Champ de texte */
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    resize: none;
+}
+
+/* Bouton de soumission */
+.comment-form button {
+    align-self: flex-end;
+    background: #007BFF;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 8px 15px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
-.btn-primary {
-    background-color: #007bff;
-    color: white;
+.comment-form button:hover {
+    background: #0056b3;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #565e64;
-}
-
-.btn-success {
-    background-color: #28a745;
-    color: white;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-}
-
-/* Message d'alerte si l'utilisateur n'est pas connecté */
-.text-danger {
+/* Message d'erreur */
+.comment-error {
     color: #dc3545;
-    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-/* Lien retour */
-.btn-secondary.mt-4 {
-    display: block;
-    width: fit-content;
-    margin: 30px auto 0;
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    .article-wrapper {
+        padding: 10px;
+    }
+
+    .article-header {
+        margin-bottom: 15px;
+    }
+
+    .article-image {
+        max-width: 100%; /* L'image prend toute la largeur disponible */
+        height: auto;
+    }
+
+    .article-title-overlay {
+        padding: 8px 15px;
+        font-size: 18px;
+    }
+
+    .comment-section {
+        padding: 15px;
+    }
+
+    .comment-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .comment-avatar {
+        margin-bottom: 10px;
+    }
+
+    .comment-form textarea {
+        font-size: 13px;
+    }
+
+    .comment-form button {
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-content {
+        font-size: 16px;
+    }
+
+    .article-title-overlay {
+        padding: 6px 10px;
+        font-size: 16px;
+    }
+
+    .comment-author {
+        font-size: 13px;
+    }
+
+    .comment-date {
+        font-size: 11px;
+    }
+
+    .comment-text {
+        font-size: 13px;
+    }
+
+    .comment-form textarea {
+        font-size: 12px;
+    }
+
+    .comment-form button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }

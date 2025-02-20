@@ -1,315 +1,107 @@
+/* ============================= */
+/* 🌟 STYLE GLOBAL */
+/* ============================= */
 
-  /* Mode sombre */
-
-body.dark-mode {
-    background-color: #000000; /* Fond noir */
-    color: #ffffff; /* Texte blanc */
-}
-
-/* Liens */
-body.dark-mode a {
-    color: #ffffff; /* Liens blancs */
-}
-
-/* Barre de navigation */
-body.dark-mode .navbar {
-    background-color: #000000; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
-}
-
-/* Boutons de navigation */
-body.dark-mode .nav-button,
-body.dark-mode .dropbtn {
-    color: #ffffff; /* Boutons blancs */
-}
-
-/* Menu déroulant */
-body.dark-mode .dropdown-content {
-    background-color: #1d1d1d; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
-}
-
-body.dark-mode .dropdown-content a:hover {
-    background-color: #444444; /* Fond légèrement plus clair au survol */
-}
-
-/* Boutons d'authentification */
-body.dark-mode .auth-button {
-    color: #ffffff; /* Texte blanc */
-    border-color: #ffffff; /* Bordure blanche */
-}
-
-body.dark-mode .signup-button {
-    background-color: #ffffff; /* Fond blanc */
-    color: #000000; /* Texte noir */
-}
-
-/* Formulaire de recherche */
-body.dark-mode .search-button {
-    background-color: #333333; /* Fond sombre */
-    color: #ffffff; /* Icône blanche */
-}
-
-body.dark-mode .search-button:hover {
-    background-color: #444444; /* Fond légèrement plus clair au survol */
-    color: #ffffff; /* Icône blanche */
-}
-
-/* Section des actualités */
-body.dark-mode .news-section {
-    background-color: #1e1e1e; /* Fond sombre */
-}
-
-body.dark-mode .news-item {
-    background-color: #2a2a2a; /* Fond sombre des articles */
-    color: #ffffff; /* Texte blanc */
-}
-
-body.dark-mode .news-item:hover {
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); /* Ombre claire */
-}
-
-body.dark-mode .news-item img {
-    filter: brightness(90%); /* Assombrir légèrement les images */
-}
-
-/* Section vidéos */
-body.dark-mode .video-section {
-    background-color: #000000; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
-}
-
-body.dark-mode .video-item p {
-    color: #ffffff; /* Texte blanc sous les vidéos */
-}
-
-body.dark-mode iframe {
-    border: 2px solid #444444; /* Bordure claire autour des vidéos */
-}
-
-/* Pied de page */
-body.dark-mode footer {
-    background-color: #161616; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
-}
-
-body.dark-mode .footer-section h3 {
-    color: #ffffff; /* Titres blancs */
-}
-
-body.dark-mode .footer-section ul li a {
-    color: #ffffff; /* Liens blancs */
-}
-
-body.dark-mode .footer-section ul li a:hover {
-    color: #cccccc; /* Liens gris clair au survol */
-}
-
-body.dark-mode .copyright p {
-    color: #ffffff; /* Texte blanc */
-}
-
-/* Titres et textes généraux */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6 {
-    color: #ffffff; /* Titres blancs */
-}
-
-body.dark-mode p {
-    color: #ffffff; /* Paragraphes blancs */
-}
-
-body.dark-mode strong {
-    color: #ffffff; /* Texte en gras blanc */
-}
-
-/* Séparateurs */
-body.dark-mode .separator {
-    background-color: #444444; /* Barre grise */
-}
-
-body.dark-mode .arrow:hover {
-    background-color: #444444; /* Boutons légèrement plus clairs au survol */
-}
-
-/* Sections non spécifiées */
-body.dark-mode section {
-    background-color: #222222; /* Fond sombre */
-    color: #ffffff; /* Texte blanc */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* === Conteneur principal === */
 .container {
-    background-color: #f8f9fa;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* === Titre principal === */
+/* ============================= */
+/* 🌟 STYLE DU TITRE */
+/* ============================= */
 h1 {
-    font-weight: bold;
+    text-align: center;
+    font-size: 28px;
     color: #333;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-/* === Bouton personnalisé === */
-.custom-btn {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: #fff;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.custom-btn:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
-
-/* === Table stylisée === */
-.custom-table {
+/* ============================= */
+/* 🌟 STYLE DE LA TABLE */
+/* ============================= */
+.table {
     width: 100%;
-    background-color: #fff;
-    border-radius: 8px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-collapse: separate;
-    border-spacing: 0;
 }
 
-.custom-table thead {
-    background-color: #343a40;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 1px;
+.table thead {
+    background: #007BFF;
+    color: white;
 }
 
-.custom-table th, .custom-table td {
-    padding: 15px;
-    text-align: center;
-    vertical-align: middle;
-    border-bottom: 1px solid #dee2e6;
+.table th, 
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.custom-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+.table tr:hover {
+    background: rgba(0, 123, 255, 0.1);
 }
 
-.custom-table tbody tr:hover {
-    background-color: #e9ecef;
-    transition: background-color 0.3s ease;
-}
-
-/* === Badges des rôles === */
-.role-badge {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.85em;
-    font-weight: bold;
-    color: #fff;
+/* ============================= */
+/* 🌟 STYLE DES BOUTONS */
+/* ============================= */
+.btn {
     display: inline-block;
-    text-transform: capitalize;
-}
-
-.role-badge.admin {
-    background-color: #dc3545; /* Rouge pour les admins */
-}
-
-.role-badge.user {
-    background-color: #6c757d; /* Gris pour les utilisateurs standards */
-}
-
-/* === Boutons d'action === */
-.action-btn {
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-size: 0.9em;
-    margin: 0 3px;
-    transition: all 0.3s ease;
+    padding: 8px 12px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
 }
 
-/* Bouton de modification */
-.edit-btn {
-    background-color: #007bff;
-    color: #fff;
+.btn-sm {
+    font-size: 13px;
+    padding: 6px 10px;
 }
 
-.edit-btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
+.btn-primary {
+    background: #007BFF;
+    color: white;
 }
 
-/* Bouton de suppression */
-.delete-btn {
-    background-color: #dc3545;
-    color: #fff;
+.btn-primary:hover {
+    background: #0056b3;
 }
 
-.delete-btn:hover {
-    background-color: #c82333;
-    transform: scale(1.1);
+.btn-danger {
+    background: #dc3545;
+    color: white;
 }
 
-/* Message de non-autorisation */
-.text-muted {
-    font-style: italic;
-    color: #6c757d;
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* ============================= */
+/* 🌟 STYLE POUR MOBILE */
+/* ============================= */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .table th, 
+    .table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
 }

@@ -1,53 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home | FootNews{% endblock %}
-
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/article.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM chargé, test minimal des boutons "Modifier"...');
+
+            const editButtons = document.querySelectorAll('.edit-comment-btn');
+            if (editButtons.length > 0) {
+                editButtons.forEach(button => {
+                    console.log('Bouton trouvé :', button);
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Clic sur le bouton "Modifier", ID :', this.dataset.commentId);
+                        const commentId = this.dataset.commentId;
+                        const form = document.getElementById('edit-form-' + commentId);
+
+                        if (form) {
+                            console.log('Formulaire trouvé, état actuel :', form.style.display);
+                            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                            console.log('Nouvel état du formulaire :', form.style.display);
+                        } else {
+                            console.error('Formulaire non trouvé pour l’ID :', commentId);
+                        }
+                    });
+                });
+            } else {
+                console.error('Aucun bouton "Modifier" trouvé.');
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
-<div class="container mt-5">
-    <h1 class="mb-4">{{ article.titre }}</h1>
+<div class="article-wrapper">
+    <div class="article-header">
+        {# Affichage de l'image et du titre de l'article #}
+        <div class="article-image-wrapper">
+            {% if article.image is not empty %}
+                <img src="{{ asset('uploads/articles/' ~ article.image) }}" alt="{{ article.titre }}" class="article-image">
+            {% endif %}
+        </div>
+        <h1 class="article-title">{{ article.titre }}</h1>
+    </div>
 
+    <div class="article-content">
+        <p>{{ article.contenu }}</p>
+    </div>
 
-    <p>{{ article.contenu }}</p>
+    <hr class="section-divider">
 
-    <hr>
+    <h3 class="comments-title mb-4">Commentaires</h3>
+    {% if commentaires is not empty %}
+        <ul class="comment-list">
+            {% for commentaire in commentaires %}
+                <li class="comment-item">
+                    <div class="comment-header">
+                        {# Avatar du commentateur #}
+                        <div class="comment-info">
+                            <p class="comment-meta">
+                                <img src="{{ commentaire.author.profilePicture ? asset('uploads/profile_pictures/' ~ commentaire.author.profilePicture) : asset('images/default-avatar.png') }}"
+                                     alt="Avatar de {{ commentaire.author.username }}"
+                                     class="comment-avatar">
+                                <strong>{{ commentaire.author.username }}</strong>
+                                - <small class="comment-date">{{ commentaire.createdAt|date('d/m/Y H:i') }}</small>
+                            </p>
+                            <p class="comment-text">{{ commentaire.contenu }}</p>
+                        </div>
+                    </div>
 
-    <h3>Commentaires</h3>
-    {% if comments is not empty %}
-        <ul class="list-group mb-4">
-            {% for comment in comments %}
-                <li class="list-group-item">
-                    <p>
-                        <strong>{{ comment.author.username }}</strong> <!-- Correction ici -->
-                        - <small class="text-muted">{{ comment.createdAt|date('d/m/Y H:i') }}</small>
-                    </p>
-                    <p>{{ comment.content }}</p>
+                    {# Boutons Supprimer et Modifier visibles si l'utilisateur est l'auteur ou un admin #}
+                    {% if app.user and (app.user == commentaire.author or is_granted('ROLE_ADMIN')) %}
+                        <div class="comment-actions">
+                            <form method="post" action="{{ path('commentaire_delete', { id: commentaire.id }) }}" class="comment-delete-form"
+                                  onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                <button class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        </div>
+
+                        <!-- Formulaire d'édition caché -->
+                        <div id="edit-form-{{ commentaire.id }}" style="display: none;" class="mt-3 edit-comment-form">
+                            {{ form_start(commentForms[commentaire.id]) }}
+                            {{ form_widget(commentForms[commentaire.id].contenu) }}
+                            <button type="submit" class="btn btn-success btn-sm">Sauvegarder</button>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="this.closest('.edit-comment-form').style.display='none'">Annuler</button>
+                            {{ form_end(commentForms[commentaire.id]) }}
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p class="text-muted">Aucun commentaire pour cet article.</p>
+        <p class="no-comments">Aucun commentaire pour cet article.</p>
     {% endif %}
 
-    <hr>
+    <hr class="section-divider">
 
     {# Formulaire d'ajout de commentaire #}
     {% if app.user %}
-        <h4>Ajouter un commentaire</h4>
+        <h4 class="add-comment-title">Ajouter un commentaire</h4>
 
-        <form method="post" action="{{ path('article_show', { id: article.id }) }}">
-            <div class="mb-3">
-                <label for="content" class="form-label">Votre commentaire</label>
-                <textarea id="content" name="content" class="form-control" rows="4" required></textarea>
+        <form method="post" action="{{ path('commentaire_new', { articleId: article.id }) }}" class="comment-form">
+            <div class="form-group">
+                <label for="contenu" class="form-label">Votre commentaire</label>
+                <textarea id="contenu" name="contenu" class="form-control" rows="4" required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Publier</button>
         </form>
-    {% else %}
-        <p class="text-danger">Vous devez être connecté pour ajouter un commentaire.</p>
-        <a href="{{ path('app_login') }}" class="btn btn-success">Se connecter</a>
     {% endif %}
 </div>
 {% endblock %}

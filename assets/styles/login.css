@@ -5,11 +5,22 @@
     align-items: center;
     min-height: 100vh; /* Formulaire centré verticalement */
     background: #f2f5ff; /* Fond clair avec une légère couleur */
+    padding: 20px; /* Ajout d'un padding pour les petits écrans */
+}
+
+.error-message {
+    color: #fff;
+    background-color: #dc3545;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .contact-form {
     background: #ffffff; /* Fond blanc pour contraster */
-    padding: 60px;
+    padding: 40px; /* Réduction du padding pour les petits écrans */
     border-radius: 10px; /* Coins arrondis */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
     max-width: 900px; /* Formulaire plus vertical */
@@ -77,32 +88,51 @@
     text-decoration: underline;
 }
 
+/* Media Query pour les écrans de taille moyenne */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 30px; /* Ajustement du padding */
+    }
 
+    .contact-form h2 {
+        font-size: 20px; /* Réduction de la taille du titre */
+    }
 
+    .contact-form p {
+        font-size: 13px; /* Réduction de la taille du texte */
+    }
 
+    .contact-form input {
+        font-size: 13px; /* Réduction de la taille du texte des champs */
+    }
 
+    .contact-form button {
+        font-size: 15px; /* Réduction de la taille du texte du bouton */
+    }
+}
 
+/* Media Query pour les petits écrans */
+@media (max-width: 480px) {
+    .contact-form {
+        padding: 20px; /* Ajustement du padding */
+    }
 
+    .contact-form h2 {
+        font-size: 18px; /* Réduction de la taille du titre */
+    }
 
+    .contact-form p {
+        font-size: 12px; /* Réduction de la taille du texte */
+    }
 
+    .contact-form input {
+        font-size: 12px; /* Réduction de la taille du texte des champs */
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .contact-form button {
+        font-size: 14px; /* Réduction de la taille du texte du bouton */
+    }
+}
 
 /* 🌙 FORMULAIRE DE CONNEXION (MODE SOMBRE) */
 body.dark-mode .formulaire-de-connexion {
@@ -112,7 +142,7 @@ body.dark-mode .formulaire-de-connexion {
 body.dark-mode .contact-form {
     background: #1e1e1e; /* Fond sombre pour le formulaire */
     color: #ffffff; /* Texte blanc */
-    padding: 60px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Ombre blanche douce */
     max-width: 900px;
@@ -170,7 +200,15 @@ body.dark-mode .contact-form button:hover {
     transform: scale(1.05); /* Légère mise en avant au survol */
 }
 
-
 body.dark-mode {
     background-color: black;
+}
+
+
+body.dark-mode .reset-password-link {
+    color: #ffffff; /* Texte blanc en mode sombre */
+}
+
+body.dark-mode .reset-password-link:hover {
+    text-decoration: underline; /* Soulignement au survol */
 }

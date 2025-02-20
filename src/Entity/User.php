@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -17,15 +18,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: "L'adresse e-mail ne peut pas être vide.")]
+    #[Assert\Email(message: "L'adresse e-mail doit être valide.")]
     private ?string $email = null; 
 
     #[ORM\Column]
     private array $roles = []; 
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le mot de passe ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 12,
+        minMessage: "Le mot de passe doit contenir au moins 12 caractères."
+    )]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])/",
+        message: "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial (@$!%*?&)."
+    )]
+    #[Assert\NotCompromisedPassword(message: "Ce mot de passe a été compromis et ne peut pas être utilisé.")]
     private ?string $password = null; 
 
     #[ORM\Column(length: 50, unique: true)]
+    #[Assert\NotBlank(message: "Le nom d'utilisateur ne peut pas être vide.")]
     #[Groups(['comment:read'])] 
     private ?string $username = null;
 

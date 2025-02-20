@@ -1,3 +1,4 @@
+/* Styles par défaut (mode clair) */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -72,7 +73,6 @@ p {
     background-color: #0056b3;
 }
 
-
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -88,97 +88,86 @@ p {
     border-color: #c3e6cb;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 🌟 Mode sombre */
-body.dark-mode .formulaire-de-contact {
-    background: #000000; /* Fond sombre global */
+/* 🌟 Styles pour le mode sombre (fond noir pur) */
+body.dark-mode {
+    background-color: #000000; /* Fond noir pur global */
+    color: #ffffff; /* Texte blanc par défaut */
 }
 
-body.dark-mode .contact-form {
-    background: #1e1e1e; /* Fond sombre pour le formulaire */
-    color: #ffffff; /* Texte blanc */
+body.dark-mode main {
+    background-color: #000000; /* Fond noir pur pour le contenu principal */
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Ombre légère blanche */
 }
 
-body.dark-mode .contact-form h2 {
+body.dark-mode h2 {
     color: #ffffff; /* Titre en blanc */
 }
 
-body.dark-mode .contact-form p {
-    color: #cccccc; /* Texte légèrement gris */
+body.dark-mode p {
+    color: #cccccc; /* Texte légèrement gris clair pour le contraste */
 }
 
-body.dark-mode .contact-form input,
-body.dark-mode .contact-form select,
-body.dark-mode .contact-form textarea {
-    background-color: #333333; /* Fond sombre pour les champs */
+body.dark-mode .form-group label {
+    color: #ffffff; /* Étiquettes en blanc */
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background-color: #111111; /* Fond très sombre (légèrement gris pour la lisibilité) */
     color: #ffffff; /* Texte blanc */
-    border: 1px solid #444444; /* Bordure sombre */
+    border: 1px solid #333333; /* Bordure sombre */
 }
 
-body.dark-mode .contact-form input:focus,
-body.dark-mode .contact-form select:focus,
-body.dark-mode .contact-form textarea:focus {
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus,
+body.dark-mode .form-group textarea:focus {
     border-color: #5a7fff; /* Bordure bleue au focus */
     box-shadow: 0 0 4px rgba(90, 127, 255, 0.5);
 }
 
-body.dark-mode .submit-button {
+body.dark-mode .btn-primary {
     background-color: #5a7fff; /* Conserver le bleu clair */
     color: #ffffff; /* Texte blanc */
 }
 
-body.dark-mode .submit-button:hover {
+body.dark-mode .btn-primary:hover {
     background-color: #4867cc; /* Bleu plus foncé au survol */
+}
+
+body.dark-mode .alert {
+    color: #d4edda; /* Texte clair pour les alertes */
+    background-color: #000000; /* Fond noir pur pour les alertes */
+    border-color: #333333; /* Bordure sombre */
+}
+
+body.dark-mode .alert-success {
+    color: #c3e6cb; /* Texte vert clair pour succès */
+    background-color: #000000; /* Fond noir pur */
+    border-color: #333333; /* Bordure sombre */
 }
 
 /* 🌟 Responsive Design */
 @media (max-width: 768px) {
-    .contact-form {
+    main {
         padding: 30px 20px; /* Réduction des paddings */
     }
 
-    .contact-form h2 {
+    h2 {
         font-size: 22px; /* Taille de police réduite */
     }
 
-    .submit-button {
+    .btn-primary {
         font-size: 14px; /* Réduction de la taille du texte */
     }
 }
 
 @media (max-width: 480px) {
-    .contact-form h2 {
+    h2 {
         font-size: 20px; /* Taille de police plus petite */
     }
 
-    .contact-form p {
+    p {
         font-size: 12px; /* Texte plus compact */
     }
 }

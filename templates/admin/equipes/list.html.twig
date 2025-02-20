@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | FootNews{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/list-equipes.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des équipes</h1>
+
+    <ul class="list-group">
+        {% for equipe in equipes %}
+            <li class="list-group-item">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        {% if equipe.logo %}
+                            <img src="{{ asset(equipe.logo) }}" alt="{{ equipe.nom }} Logo" class="equipe-logo">
+                        {% else %}
+                            <img src="{{ asset('path/to/default-logo.png') }}" alt="Default Logo" class="equipe-logo">
+                        {% endif %}
+                        <div>
+                            <strong>{{ equipe.nom }}</strong> - {{ equipe.pays }}
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{{ path('admin_equipe_show', { id: equipe.id }) }}" class="btn btn-info btn-sm">Voir</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_equipe_edit', { id: equipe.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                            <form method="post" action="{{ path('admin_equipe_delete', { id: equipe.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer l\'équipe {{ equipe.nom }} ?');" style="display:inline-block;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ equipe.id) }}">
+                                <button class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% else %}
+            <li class="list-group-item text-center">Aucune équipe trouvée.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="mt-4">
+        <a href="{{ path('admin_equipe_create') }}" class="btn btn-success">Créer une nouvelle équipe</a>
+    </div>
+</div>
+{% endblock %}

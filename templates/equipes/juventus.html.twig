@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Juventus {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Paris-Saint-Germain</h1>
+
+    <div class="equipe-details">
+        <img src="{{ equipe.logo ? asset(equipe.logo) : 'path/to/default-logo.png' }}" alt="PSG Logo" class="equipe-logo">
+        <p><strong>Nom:</strong> {{ equipe.nom }}</p>
+        <p><strong>Pays:</strong> {{ equipe.pays }}</p>
+        <!-- Ajoutez d'autres informations ici si nécessaire -->
+    </div>
+
+    <div class="equipe-description">
+        <h2>À propos de Paris-Saint-Germain</h2>
+        <p>Le Paris Saint-Germain, communément appelé PSG, est un club de football basé à Paris, en France. Fondé en 1970, le PSG est l'un des clubs les plus titrés et prestigieux du football français.</p>
+        <!-- Ajoutez plus de détails ou d'historique si disponible -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de Confidentialité | FootNews{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/politiquedeconfidentialite.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Politique de confidentialité de FootNews</h1>
+        <p>Chez <strong>FootNews</strong>, nous prenons la protection de vos données personnelles au sérieux. Cette politique explique comment nous collectons, utilisons et protégeons vos informations.</p>
+
+        <h2>1. Collecte des données</h2>
+        <ul>
+            <li>Nous collectons des informations telles que votre adresse e-mail lorsque vous vous inscrivez ou laissez un commentaire (si applicable).</li>
+            <li>Des données de navigation (cookies, adresse IP) peuvent être collectées pour améliorer votre expérience.</li>
+        </ul>
+
+        <h2>2. Utilisation des données</h2>
+        <ul>
+            <li>Vos données servent à personnaliser votre expérience et à vous envoyer des mises à jour (si vous y avez consenti).</li>
+            <li>Elles ne seront jamais vendues à des tiers.</li>
+        </ul>
+
+        <h2>3. Vos droits</h2>
+        <ul>
+            <li>Vous pouvez demander l’accès, la modification ou la suppression de vos données en nous contactant.</li>
+        </ul>
+
+        <p>Pour toute question, contactez-nous à <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+        <p><em>Date de dernière mise à jour : {{ last_updated|date('d F Y') }}</em></p>
+    </div>
+{% endblock %}

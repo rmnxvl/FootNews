@@ -1,0 +1,213 @@
+/* Définir des variables CSS pour une meilleure maintenabilité */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #17a2b8;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --dark-color: #343a40;
+    --gray-color: #6c757d;
+    --light-gray: #f1f3f5;
+    --white: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #dee2e6;
+    --font-size-base: 1rem;
+    --spacing-unit: 20px;
+    --transition-duration: 0.3s;
+}
+
+/* Conteneur principal avec une largeur maximale et une mise en page centrée */
+.container {
+    max-width: 1500px;
+    margin: var(--spacing-unit) auto;
+    padding: var(--spacing-unit);
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Titre principal avec une mise en page centrée et un style moderne */
+h1 {
+    color: var(--dark-color);
+    font-size: clamp(2rem, 4vw, 2.5rem); /* Réactivité pour différentes tailles d’écran */
+    margin-bottom: var(--spacing-unit);
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Liste des groupes avec un design propre et moderne */
+.list-group {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    margin-top: var(--spacing-unit);
+    overflow: hidden; /* Pour éviter les débordements avec les ombres */
+}
+
+/* Élément individuel de la liste avec une mise en page flexible */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-unit);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Garde le contenu principal à gauche, boutons à droite */
+    transition: background-color var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+    position: relative; /* Pour les animations ou éléments enfants absolus */
+}
+
+/* Effet hover avec une animation douce et une ombre légère */
+.list-group-item:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+/* Style pour les textes forts (noms, titres, etc.) */
+.list-group-item strong {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Conteneur pour l’image et le texte dans l’élément de liste */
+.list-group-item div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacement entre l’image et le texte */
+}
+
+/* Style pour les images (logos ou avatars) */
+.list-group-item div:first-child img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    transition: transform var(--transition-duration);
+}
+
+/* Effet hover sur les images pour une interaction subtile */
+.list-group-item div:first-child img:hover {
+    transform: scale(1.1);
+}
+
+/* Conteneur pour les boutons afin de les aligner horizontalement */
+.list-group-item .btn-group {
+    display: flex; /* Aligne les boutons horizontalement */
+    gap: 10px; /* Espacement entre les boutons */
+    align-items: center; /* Centre verticalement les boutons */
+}
+
+/* Boutons avec un design moderne et une transition fluide */
+.btn {
+    border-radius: 20px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    transition: background-color var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+    cursor: pointer;
+    border: none; /* Supprimer la bordure par défaut */
+}
+
+/* Styles spécifiques pour chaque type de bouton */
+.btn-info {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--white);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+/* Boutons de petite taille */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.2rem;
+}
+
+/* Effet hover pour les boutons */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    opacity: 0.9; /* Légère réduction de l’opacité pour un effet subtil */
+}
+
+/* Texte centré avec un style propre */
+.text-center {
+    color: var(--gray-color);
+    padding: var(--spacing-unit);
+    text-align: center;
+}
+
+/* Marge supérieure avec réactivité */
+.mt-4 {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* Améliorations pour la réactivité (media queries) */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: calc(var(--spacing-unit) / 2);
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .list-group-item {
+        padding: calc(var(--spacing-unit) / 2);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-group-item .btn-group {
+        flex-direction: column; /* Empile les boutons verticalement sur mobile */
+        gap: 5px; /* Réduit l’espacement sur mobile */
+        width: 100%; /* Boutons en pleine largeur sur mobile */
+        margin-top: 10px; /* Espacement après le contenu principal */
+    }
+
+    .btn {
+        margin-left: 0;
+        width: 100%; /* Boutons en pleine largeur sur mobile */
+    }
+}
+
+/* Améliorations pour l’accessibilité */
+.list-group-item, .btn {
+    outline: none; /* Supprimer les outlines par défaut */
+}
+
+.list-group-item:focus, .btn:focus {
+    outline: 2px solid var(--primary-color); /* Outline personnalisé pour l’accessibilité */
+    outline-offset: 2px;
+}
+
+/* Animation pour les transitions globales */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-group, .container {
+    animation: fadeIn 0.5s ease-out;
+}

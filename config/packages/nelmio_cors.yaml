@@ -11,3 +11,4 @@ nelmio_cors:
             allow_headers: ['Content-Type', 'Authorization']
             allow_methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE']
             max_age: 3600
+            allow_credentials: true

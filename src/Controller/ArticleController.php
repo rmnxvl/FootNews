@@ -42,7 +42,7 @@ public function index(Request $request, ArticleRepository $articleRepository): R
 
             if (!empty($content)) {
                 $comment = new Commentaire();
-                $comment->setContent($content);
+                $comment->setContenu($content);
                 $comment->setAuthor($this->getUser());
                 $comment->setCreatedAt(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris')));
                 $comment->setArticle($article);

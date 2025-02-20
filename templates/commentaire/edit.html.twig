@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Modifier votre commentaire{% endblock %}
+
 {% block body %}
-<div class="container mt-5">
-    <h1>Modifier votre commentaire</h1>
-    <form method="post" action="{{ path('commentaire_edit', { id: commentaire.id }) }}">
-        <div class="mb-3">
-            <label for="content" class="form-label">Votre commentaire</label>
-            <textarea id="content" name="content" class="form-control" rows="4" required>{{ commentaire.content }}</textarea>
+    <div class="container mt-4">
+        <h1 class="mb-4">Modifier votre commentaire</h1>
+        
+        <div class="card p-4">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.contenu, 'Votre commentaire') }}
+                    {{ form_widget(form.contenu, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+                </div>
+                <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ commentaire.id) }}">
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+                <a href="{{ path('article_show', {'id': commentaire.article.id}) }}" class="btn btn-secondary">Annuler</a>
+            {{ form_end(form) }}
         </div>
-        <button type="submit" class="btn btn-primary">Modifier</button>
-    </form>
-    <a href="{{ path('article_show', { id: commentaire.article.id }) }}" class="btn btn-secondary mt-3">Retour à l'article</a>
-</div>
+    </div>
 {% endblock %}

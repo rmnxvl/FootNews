@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conditions d'utilisations | FootNews{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }} {# Inclut les styles du template parent #}
+    <link rel="stylesheet" href="{{ asset('styles/conditions.css') }}"> {# CSS spécifique aux conditions #}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Conditions d'utilisation de FootNews</h1>
+        <p>Bienvenue sur <strong>FootNews</strong>, votre source d'informations sur le football. En accédant à ce site, vous acceptez de respecter les conditions d'utilisation suivantes. Si vous n’êtes pas d’accord avec ces termes, veuillez ne pas utiliser ce site.</p>
+
+        <h2>1. Utilisation du site</h2>
+        <ul>
+            <li><strong>FootNews</strong> est un site dédié à la diffusion d’actualités, d’analyses et de contenus liés au football.</li>
+            <li>Vous vous engagez à utiliser ce site à des fins personnelles et non commerciales, sauf autorisation expresse de notre part.</li>
+            <li>Toute reproduction, distribution ou utilisation non autorisée du contenu (textes, images, vidéos) est strictement interdite.</li>
+        </ul>
+
+        <h2>2. Contenu</h2>
+        <ul>
+            <li>Nous nous efforçons de fournir des informations précises et à jour, mais nous ne garantissons pas l’exactitude ou l’exhaustivité des contenus publiés.</li>
+            <li>Les opinions exprimées dans les articles ou commentaires ne reflètent pas nécessairement celles de <strong>FootNews</strong>.</li>
+        </ul>
+
+        <h2>3. Compte utilisateur</h2>
+        <ul>
+            <li>Si le site propose une inscription, vous êtes responsable de la confidentialité de vos identifiants.</li>
+            <li>Tout comportement abusif, tel que des propos offensants ou des spams, entraînera la suspension ou la suppression de votre compte.</li>
+        </ul>
+
+        <h2>4. Propriété intellectuelle</h2>
+        <ul>
+            <li>Tous les contenus publiés sur <strong>FootNews</strong> (logos, articles, photos, etc.) sont protégés par le droit d’auteur et appartiennent à <strong>FootNews</strong> ou à ses partenaires.</li>
+            <li>Vous ne pouvez pas copier, modifier ou distribuer ces contenus sans notre autorisation écrite.</li>
+        </ul>
+
+        <h2>5. Limitation de responsabilité</h2>
+        <ul>
+            <li><strong>FootNews</strong> ne peut être tenu responsable des dommages directs ou indirects résultant de l’utilisation du site ou de l’impossibilité d’y accéder.</li>
+            <li>Les liens vers des sites tiers sont fournis pour votre commodité, mais nous ne contrôlons pas leur contenu.</li>
+        </ul>
+
+        <h2>6. Modifications des conditions</h2>
+        <ul>
+            <li>Nous nous réservons le droit de modifier ces conditions à tout moment. Les changements seront publiés sur cette page, et votre utilisation continue du site vaudra acceptation des nouvelles conditions.</li>
+        </ul>
+
+        <h2>7. Contact</h2>
+        <p>Pour toute question ou réclamation, vous pouvez nous contacter à <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+
+        <p><em>Date de dernière mise à jour : {{ last_updated|date('d F Y') }}</em></p>
+    </div>
+{% endblock %}

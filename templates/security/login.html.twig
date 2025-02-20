@@ -9,18 +9,23 @@
 <main class="formulaire-de-connexion">
     <form method="post" action="{{ path('app_login') }}" class="contact-form">
         <h2>Se connecter</h2>
+
+        {% if error is not empty %}
+            <div class="alert alert-danger error-message">
+                {% if error.messageKey is defined %}
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                {% else %}
+                    {{ error }}
+                {% endif %}
+            </div>
+        {% endif %}
+
         <p>Connectez-vous à votre compte.</p>
         <input type="email" name="_username" placeholder="Adresse e-mail" required>
         <input type="password" name="_password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
         <a href="{{ path('password_reset') }}" class="reset-password-link">Mot de passe oublié ?</a>
     </form>
-
-    {% if error %}
-        <div class="alert alert-danger mt-3">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
-    {% endif %}
 </main>
 
 {% endblock %}

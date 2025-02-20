@@ -161,6 +161,18 @@ html, body {
 
 
 
+  .img-home {
+    height: 70px;
+    width: 100%;
+    filter: grayscale(100%); 
+  }
+
+
+
+
+
+
+
 
 
 
