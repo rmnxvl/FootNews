@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO = "https://github.com/hmicn/certif-bookapp.git"
+        GIT_REPO = "https://github.com/rmnxvl/FootNews.git"
         GIT_BRANCH = "main"
         DEPLOY_DIR = "web017"
     }
@@ -29,7 +29,7 @@ pipeline {
                     def envLocal = """
                     APP_ENV=prod
                     APP_DEBUG=1
-                    DATABASE_URL=mysql://root:routitop@127.0.0.1:3306/${DEPLOY_DIR}?serverVersion=8.3.0&charset=utf8mb4
+                    DATABASE_URL=mysql://root:routitop@127.0.0.1:8889/${DEPLOY_DIR}?serverVersion=8.3.0&charset=utf8mb4
                     """.stripIndent()
 
                     writeFile file: "${DEPLOY_DIR}/.env.local", text: envLocal
