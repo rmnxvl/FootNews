@@ -8,7 +8,7 @@ html, body {
 /* Section principale */
 .news-section {
     padding: 20px;
-    background-color: #ffffff; /* Fond clair mais non blanc */
+    background-color: #ffffff; /* Fond blanc */
 }
 
 /* Titre de la section */
@@ -73,13 +73,13 @@ html, body {
 }
 
 /* ------------------------------------------ */
-/* Section des vidéos (nouveaux styles) */
+/* Section des vidéos (améliorée) */
 /* ------------------------------------------ */
 
 /* Section principale des vidéos */
 .video-section {
     padding: 20px;
-    background-color: #ffffff; /* Même fond clair que news-section */
+    background-color: #ffffff; /* Même fond blanc que news-section */
     margin-top: 40px; /* Espacement après les articles */
 }
 
@@ -119,14 +119,25 @@ html, body {
     font-size: 18px;
     margin: 15px 10px 10px; /* Espacement interne similaire à news-item */
     color: #333;
+    text-align: center;
 }
 
-/* Iframe de la vidéo */
-.video-item iframe {
+/* Conteneur pour l'iframe avec ratio 16:9 */
+.video-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px;
+}
+
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 315px; /* Hauteur fixe pour une grille uniforme */
+    height: 100%;
     border: none;
-    border-radius: 0 0 10px 10px; /* Coins arrondis en bas */
 }
 
 /* Date de la vidéo */
@@ -134,6 +145,7 @@ html, body {
     font-size: 0.9em;
     color: #666;
     margin: 10px;
+    text-align: center;
 }
 
 /* ------------------------------------------ */
@@ -286,11 +298,6 @@ body.dark-mode .video-item {
 body.dark-mode .video-item:hover {
     background-color: #333333; /* Fond plus clair au survol */
     transform: translateY(-5px); /* Légère élévation au survol */
-}
-
-body.dark-mode .video-item iframe {
-    border: 1px solid #444444; /* Bordure autour des vidéos */
-    border-radius: 8px;
 }
 
 body.dark-mode .video-item h3 {

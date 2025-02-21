@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une Vidéo | FootNews{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/video-create.css') }}"> 
+{% endblock %}
+
+{% block body %}
+    <div class="crud-container">
+        <h1 class="crud-title">Ajouter une Nouvelle Vidéo</h1>
+
+        <!-- Messages flash pour informer l'utilisateur -->
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        <!-- Formulaire d'ajout -->
+        <div class="crud-form-card">
+            <h2>Ajouter une vidéo</h2>
+            {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.title, 'Titre de la vidéo') }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.title) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.youtubeUrl, 'URL YouTube') }}
+                    {{ form_widget(form.youtubeUrl, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.youtubeUrl) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <a href="{{ path('admin_video_index') }}" class="btn btn-secondary">Annuler</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Vidéos | FootNews{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/video-crud.css') }}"> 
+{% endblock %}
+
+{% block body %}
+    <div class="crud-container">
+        <h1 class="crud-title">Liste des Vidéos</h1>
+
+        <!-- Messages flash pour informer l'utilisateur -->
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        <!-- Bouton pour ajouter une nouvelle vidéo -->
+        <div class="crud-actions">
+            <a href="{{ path('admin_video_create') }}" class="btn btn-primary">Ajouter une vidéo</a>
+        </div>
+
+        <!-- Liste des vidéos -->
+        <div class="video-list">
+            {% if videos is empty %}
+                <p class="no-videos">Aucune vidéo disponible pour le moment.</p>
+            {% else %}
+                <div class="video-grid">
+                    {% for video in videos %}
+                        <div class="video-card">
+                            <div class="video-preview">
+                                {% set youtubeId = video.youtubeUrl|split('v=')[1]|split('&')[0] %}
+                                <iframe 
+                                    src="https://www.youtube.com/embed/{{ youtubeId }}?rel=0&modestbranding=1" 
+                                    frameborder="0" 
+                                    allowfullscreen 
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            <div class="video-details">
+                                <h3>{{ video.title }}</h3>
+                                <p class="video-date">🗓️ Ajoutée le {{ video.createdAt|date('d/m/Y H:i') }}</p>
+                            </div>
+                            <div class="video-actions">
+                                <a href="{{ path('admin_video_edit', {'id': video.id}) }}" class="btn btn-secondary">Modifier</a>
+                                <form method="post" action="{{ path('admin_video_index', {'delete': video.id}) }}" class="delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete_video') }}">
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

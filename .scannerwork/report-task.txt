@@ -2,5 +2,5 @@ projectKey=FootNews
 serverUrl=http://localhost:9000
 serverVersion=24.12.0.100206
 dashboardUrl=http://localhost:9000/dashboard?id=FootNews
-ceTaskId=db46550a-8989-4fc4-8d56-2a2e21a5cd23
-ceTaskUrl=http://localhost:9000/api/ce/task?id=db46550a-8989-4fc4-8d56-2a2e21a5cd23
+ceTaskId=ee943466-80ad-49af-bcc1-16bf6faba906
+ceTaskUrl=http://localhost:9000/api/ce/task?id=ee943466-80ad-49af-bcc1-16bf6faba906

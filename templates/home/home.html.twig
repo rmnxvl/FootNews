@@ -39,31 +39,34 @@
             </div>
         </section>
 
-        <!-- Section des vidéos -->
+        <!-- Section des vidéos (améliorée) -->
         <section class="video-section">
             <h2>Vidéos</h2>
 
-            <!-- Conteneur de vidéos en grille -->
+            <!-- Conteneur de vidéos en grille améliorée -->
             <div class="video-grid">
                 {% if videos is empty %}
                     <p>Aucune vidéo disponible pour le moment.</p>
                 {% else %}
                     {% for video in videos %}
                         <div class="video-item">
-                            <!-- Titre de la vidéo -->
+                            <!-- Titre de la vidéo avec lien cliquable (optionnel, pour détails si tu veux) -->
                             <h3>{{ video.title }}</h3>
 
-                            <!-- Iframe YouTube -->
-                            {% set youtubeId = video.youtubeUrl|split('v=')[1]|split('&')[0] %}
-                            <iframe 
-                                width="100%" 
-                                height="315" 
-                                src="https://www.youtube.com/embed/{{ youtubeId }}" 
-                                frameborder="0" 
-                                allowfullscreen>
-                            </iframe>
+                            <!-- Conteneur pour l'iframe avec un ratio fixe pour éviter les distorsions -->
+                            <div class="video-embed">
+                                {% set youtubeId = video.youtubeUrl|split('v=')[1]|split('&')[0] %}
+                                <iframe 
+                                    width="100%" 
+                                    height="auto" 
+                                    src="https://www.youtube.com/embed/{{ youtubeId }}?rel=0&modestbranding=1" 
+                                    frameborder="0" 
+                                    allowfullscreen 
+                                    loading="lazy">
+                                </iframe>
+                            </div>
 
-                            <!-- Date d'ajout -->
+                            <!-- Date et actions (optionnelles, si tu veux les inclure sur la page d'accueil) -->
                             <p class="video-date">🗓️ Ajoutée le {{ video.createdAt|date('d/m/Y H:i') }}</p>
                         </div>
                     {% endfor %}
