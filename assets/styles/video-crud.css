@@ -1,0 +1,168 @@
+/* Conteneur CRUD */
+.crud-container {
+    padding: 20px;
+    background-color: #f2f5ff;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Formulaire CRUD */
+.crud-form {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Grille des vidéos */
+.video-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Carte vidéo */
+.video-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Titre de la vidéo */
+.video-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Iframe de la vidéo */
+.video-card iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Date de la vidéo */
+.video-card .video-date {
+    font-size: 0.9em;
+    color: #666;
+    margin: 10px 0;
+}
+
+/* Actions sur la vidéo */
+.video-actions a, .video-actions form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.video-actions .btn-secondary {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.video-actions .btn-secondary:hover {
+    background: #0056b3;
+}
+
+.video-actions .btn-primary {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.video-actions .btn-primary:hover {
+    background: #218838;
+}
+
+.video-actions .delete-form button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.video-actions .delete-form button:hover {
+    background: #c82333;
+}
+
+/* 🌙 Mode sombre pour le CRUD */
+body.dark-mode .crud-container {
+    background-color: #000000;
+}
+
+body.dark-mode .crud-form {
+    background-color: #252525;
+    border: 1px solid #333333;
+}
+
+body.dark-mode .video-list {
+    gap: 15px;
+}
+
+body.dark-mode .video-card {
+    background-color: #252525;
+    border: 1px solid #333333;
+    color: #ffffff;
+}
+
+body.dark-mode .video-card:hover {
+    background-color: #333333;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .video-card h3 {
+    color: #ffffff;
+}
+
+body.dark-mode .video-card .video-date {
+    color: #aaaaaa;
+}
+
+body.dark-mode .video-actions .btn-secondary {
+    background: #0069d9;
+    color: white;
+}
+
+body.dark-mode .video-actions .btn-secondary:hover {
+    background: #004d9e;
+}
+
+body.dark-mode .video-actions .btn-primary {
+    background: #1e7e34;
+    color: white;
+}
+
+body.dark-mode .video-actions .btn-primary:hover {
+    background: #165c26;
+}
+
+body.dark-mode .video-actions .delete-form button {
+    background: #bd2130;
+}
+
+body.dark-mode .video-actions .delete-form button:hover {
+    background: #a71d2a;
+}

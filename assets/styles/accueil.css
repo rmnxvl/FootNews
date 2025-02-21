@@ -5,12 +5,10 @@ html, body {
     overflow-x: hidden;
 }
 
-
-
 /* Section principale */
 .news-section {
     padding: 20px;
-    background-color: #f2f5ff; /* Fond clair mais non blanc */
+    background-color: #ffffff; /* Fond clair mais non blanc */
 }
 
 /* Titre de la section */
@@ -21,8 +19,6 @@ html, body {
     margin-bottom: 30px;
     color: #333;
 }
-
-
 
 /* Grille des articles */
 .news-grid {
@@ -69,45 +65,88 @@ html, body {
     line-height: 1.5;
 }
 
+/* Date de l'article */
+.news-item .article-date {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 10px;
+}
 
+/* ------------------------------------------ */
+/* Section des vidéos (nouveaux styles) */
+/* ------------------------------------------ */
 
+/* Section principale des vidéos */
+.video-section {
+    padding: 20px;
+    background-color: #ffffff; /* Même fond clair que news-section */
+    margin-top: 40px; /* Espacement après les articles */
+}
 
+/* Titre de la section des vidéos */
+.video-section h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
 
+/* Grille des vidéos */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Même grille que news-grid */
+    gap: 20px;
+}
 
+/* Vidéo individuelle */
+.video-item {
+    background: #ffffff; /* Même fond blanc que news-item */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Même ombre douce */
+    overflow: hidden;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.video-item:hover {
+    transform: translateY(-5px); /* Même effet d'élévation */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
 
+/* Titre de la vidéo */
+.video-item h3 {
+    font-size: 18px;
+    margin: 15px 10px 10px; /* Espacement interne similaire à news-item */
+    color: #333;
+}
 
+/* Iframe de la vidéo */
+.video-item iframe {
+    width: 100%;
+    height: 315px; /* Hauteur fixe pour une grille uniforme */
+    border: none;
+    border-radius: 0 0 10px 10px; /* Coins arrondis en bas */
+}
 
+/* Date de la vidéo */
+.video-item .video-date {
+    font-size: 0.9em;
+    color: #666;
+    margin: 10px;
+}
 
+/* ------------------------------------------ */
+/* BOUTON TOGGLE (inchangé) */
+/* ------------------------------------------ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* BOUTON TOGGLE */ 
-
-  /* Masquer la checkbox */
+/* Masquer la checkbox */
 .theme-toggle input {
     display: none;
-  }
-  
-  /* Conteneur du toggle */
-  .theme-toggle label {
+}
+
+/* Conteneur du toggle */
+.theme-toggle label {
     width: 80px; 
     height: 40px;
     position: relative;
@@ -116,97 +155,64 @@ html, body {
     border-radius: 20px; 
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  /* Soleil et lune */
-  .theme-toggle .sun,
-  .theme-toggle .moon {
+}
+
+/* Soleil et lune */
+.theme-toggle .sun,
+.theme-toggle .moon {
     position: absolute;
     width: 20px;
     height: 20px;
     top: 7px; /* Centré verticalement */
     transition: opacity 0.3s ease, color 0.3s ease;
-  }
-  
-  /* Soleil */
-  .theme-toggle .sun {
+}
+
+/* Soleil */
+.theme-toggle .sun {
     left: 10px;
     color: #ffc107; /* Couleur du soleil */
     opacity: 1; /* Soleil visible par défaut */
-  }
-  
-  /* Lune */
-  .theme-toggle .moon {
+}
+
+/* Lune */
+.theme-toggle .moon {
     right: 10px;
     color: #999999; /* Couleur de la lune */
     opacity: 0; /* Lune cachée par défaut */
-  }
-  
-  /* Si le toggle est activé */
-  .theme-toggle input:checked + label {
+}
+
+/* Si le toggle est activé */
+.theme-toggle input:checked + label {
     background: #242424; /* Fond sombre */
-  }
-  
-  .theme-toggle input:checked + label .sun {
+}
+
+.theme-toggle input:checked + label .sun {
     opacity: 0; /* Cache le soleil */
-  }
-  
-  .theme-toggle input:checked + label .moon {
+}
+
+.theme-toggle input:checked + label .moon {
     opacity: 1; /* Affiche la lune */
-  }
+}
 
-
-
-
-
-
-
-  .img-home {
+/* Image de couverture */
+.img-home {
     height: 70px;
     width: 100%;
     filter: grayscale(100%); 
-  }
+}
 
+/* ------------------------------------------ */
+/* 🌙 Mode sombre pour le contenu principal (ajusté pour inclure les vidéos) */
+/* ------------------------------------------ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* 🌙 Mode sombre pour le contenu principal */
 body.dark-mode .container {
     background-color: #121212; /* Fond sombre global */
     color: #ffffff; /* Texte clair global */
 }
 
-
 body.dark-mode {
     background-color: black;
 }
-
 
 /* 🌙 Section des actualités */
 body.dark-mode .news-section {
@@ -249,16 +255,6 @@ body.dark-mode .news-item .article-date {
     color: #aaaaaa; /* Couleur différente pour la date */
 }
 
-
-
-
-
-
-
-
-
-
-
 /* 🌙 Section des vidéos */
 body.dark-mode .video-section {
     background-color: #000000; /* Fond sombre de la section vidéo */
@@ -274,7 +270,7 @@ body.dark-mode .video-section p {
     color: #cccccc; /* Texte clair */
 }
 
-body.dark-mode .video-container {
+body.dark-mode .video-grid {
     gap: 15px; /* Espacement entre les vidéos */
 }
 
@@ -297,9 +293,12 @@ body.dark-mode .video-item iframe {
     border-radius: 8px;
 }
 
-body.dark-mode .video-item p {
+body.dark-mode .video-item h3 {
     color: #ffffff; /* Titre des vidéos en blanc */
-    font-weight: bold;
+}
+
+body.dark-mode .video-item .video-date {
+    color: #aaaaaa; /* Couleur différente pour la date, comme les articles */
 }
 
 body.dark-mode .containermt-5 {

@@ -13,7 +13,7 @@
     <main>
         <!-- Section des actualités -->
         <section class="news-section">
-            <h2> Dernières actualités</h2>
+            <h2>Top News</h2>
 
             <!-- Conteneur d'articles en grille -->
             <div class="news-grid">
@@ -35,6 +35,38 @@
                     {% endfor %}
                 {% else %}
                     <p>Aucun article disponible pour le moment.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Section des vidéos -->
+        <section class="video-section">
+            <h2>Vidéos</h2>
+
+            <!-- Conteneur de vidéos en grille -->
+            <div class="video-grid">
+                {% if videos is empty %}
+                    <p>Aucune vidéo disponible pour le moment.</p>
+                {% else %}
+                    {% for video in videos %}
+                        <div class="video-item">
+                            <!-- Titre de la vidéo -->
+                            <h3>{{ video.title }}</h3>
+
+                            <!-- Iframe YouTube -->
+                            {% set youtubeId = video.youtubeUrl|split('v=')[1]|split('&')[0] %}
+                            <iframe 
+                                width="100%" 
+                                height="315" 
+                                src="https://www.youtube.com/embed/{{ youtubeId }}" 
+                                frameborder="0" 
+                                allowfullscreen>
+                            </iframe>
+
+                            <!-- Date d'ajout -->
+                            <p class="video-date">🗓️ Ajoutée le {{ video.createdAt|date('d/m/Y H:i') }}</p>
+                        </div>
+                    {% endfor %}
                 {% endif %}
             </div>
         </section>

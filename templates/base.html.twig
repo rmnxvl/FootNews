@@ -118,7 +118,7 @@
                                     {% if app.user.profilePicture is not empty %}
                                         <img src="{{ asset('uploads/profile_pictures/' ~ app.user.profilePicture) }}" alt="Photo de profil" class="nav-profile-img navbar-profile-img rounded-circle" style="width: 40px; height: 40px;">
                                     {% else %}
-                                        <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar par défaut" class="nav-profile-img navbar-profile-img rounded-circle" style="width: 40px; height: 40px;">
+                                        <img src="{{ asset('images/default-avatar.jpg') }}" alt="Avatar par défaut" class="nav-profile-img navbar-profile-img rounded-circle" style="width: 40px; height: 40px;">
                                     {% endif %}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -129,6 +129,7 @@
                                         <li><a class="dropdown-item" href="{{ path('admin_equipe_index') }}">CRUD Équipes</a></li>
                                         <li><a class="dropdown-item" href="{{ path('admin_article_create') }}">CRUD Compétitions</a></li>
                                         <li><a class="dropdown-item" href="{{ path('crud_joueurs_index') }}">CRUD Joueurs</a></li>
+                                         <li><a class="dropdown-item" href="{{ path('admin_video_index') }}">CRUD Vidéos</a> </li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
                                 </ul>
